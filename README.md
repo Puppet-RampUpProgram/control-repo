@@ -78,9 +78,11 @@ When you finish the instructions below, you will have the beginning of a best pr
 16. On your laptop, push the production branch of the repo from your machine up to your Git server.
  - `git push origin production`
 
-### Stash
+17. `git branch --set-upstream-to origin/production`
 
-Coming soon!
+###Stash/Bitbucket
+
+[Bitbucket](bitbucket.md)
 
 ### GitHub
 
