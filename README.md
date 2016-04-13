@@ -40,29 +40,6 @@ As a result of following the instructions below you will receive at least the be
 
 # How To Set It All Up
 
-## Setup a Trusted Fact On Your PE Master
-
-This control repository is setup to manage certain portions of your PE installation for you if you create a trusted fact called `pp_role`.  In order to do so, lay down a file that looks exactly like the below in `/etc/puppetlabs/puppet/csr_attributes.yaml`
-
-```
----
-extension_requests:
-  #pp_role
-  1.3.6.1.4.1.34380.1.1.13: 'all_in_one_pe'
-```
-
-### If You Have Not Installed PE
-
-Good then you can proceed forward and the trusted fact will be used when you get to the install step.
-
-### If You Have Already Installed PE
-
-Trusted facts are created at the time a CSR is generated.  So, we need to regenerate the certificate on the master for the above trusted fact to be created.
-
-Follow this document to regenerate the certificate on your master.
-
-http://docs.puppetlabs.com/pe/latest/regenerate_certs_master.html
-
 ##Copy This Repo Into Your Own Git Server
 
 ###Gitlab
@@ -132,8 +109,9 @@ Coming soon!
 
 ###Install PE
 
-1. Download the latest version of the PE installer for your platform and copy it to your master
+1. Download the latest version of the PE installer for your platform
  - https://puppetlabs.com/download-puppet-enterprise
+2. SSH into your puppet master and copy the installer tarball into `/tmp`
 2. Expand the tarball and `cd` into the directory
 3. Run `puppet-enterprise-installer` to install
 
@@ -149,28 +127,44 @@ So, we'll set up a deploy key in the git server that will allow a ssh-key we mak
 
 1. On your puppet master, make an ssh key for r10k to connect to gitlab
  - `/usr/bin/ssh-keygen -t rsa -b 2048 -C 'code_manager' -f /etc/puppetlabs/puppetserver/code_manager.key -q -N ''`
- - http://doc.gitlab.com/ce/ssh/README.html
- - https://help.github.com/articles/generating-ssh-keys/
-2. Create a deploy key on the `control-repo` project in Gitlab
- - Paste in the public key from above
  - `cat /etc/puppetlabs/puppetserver/code_manager.key.pub`
+ - References:
+    - https://help.github.com/articles/generating-ssh-keys/
+    - http://doc.gitlab.com/ce/ssh/README.html
+2. In the Gitlab UI, create a deploy key on the `control-repo` project
+ - Paste in the public key from above
 3. Login to the PE console
-7. Navigate to the Classification page
+4. Navigate to the Classification page
  - Click on the PE Master group
  - Click the Classes tab
  - Add the `puppet_enterprise::profile::master`
     - Set the `r10k_remote` to the ssh url from the front page of your gitlab repo
     - Set the `r10k_private_key` parameter to `/etc/puppetlabs/puppetserver/code_manager.key`
  - Commit your changes
-8. Run `puppet agent -t`
- - Expect to see changes to `r10k.yaml`
-9. Run `r10k deploy environment -pv`
-10. Run `puppet agent -t`
- - Expect to see code manager enabled
-10. `echo 'code_manager_mv_old_code=true' > /opt/puppetlabs/facter/facts.d/code_manager_mv_old_code.txt`
-11. Run `puppet agent -t`
- - Now you should see many more changes
- - Your code has been deployed with code manager now
+5. Navigate back to the Classification page
+ - Near the top of the page select "add a group"
+ - Type `role:all_in_one_pe` for the group name
+    - Click the "Add Group" button
+ - Click the "add membership rules, classes and variables" link that appears
+    - Below "Pin specific nodes to the group" type your master's certname into the box
+       - Click "pin node"
+ - Select the "classes" tab
+    - In the "add new classes" box type `role::all_in_one_pe`
+       - Click "add class"
+ - Commit your changes
+8. On your puppet master
+ - Run:
+   ~~~
+   puppet agent -t
+   r10k deploy environment -pv
+   puppet agent -t
+   echo 'code_manager_mv_old_code=true' > /opt/puppetlabs/facter/facts.d/code_manager_mv_old_code.txt
+   puppet agent -t
+   ~~~
+    - The first puppet run expect to see changes to `r10k.yaml`
+    - The second puppet run expect to see code manager enabled
+    - The third puppet run will make many more changes
+9. Code Manager is configured and has been used to deploy your code
 
 ## Test Code Manager
 
