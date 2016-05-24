@@ -24,7 +24,7 @@ Our [Puppet Community Slack](http://slack.puppet.com) is a great way to interact
 
 This control-repo and the steps below are intended to be used with a new installation of PE 2016.1.z.
 
-**Warning:** When using an existing PE installation any existing code or modules in `/etc/puppetlabs/code` will be copied to a backup directory `/etc/puppetlabs/code_bak_<timestamp>` in order to allow deploying code from code manager.
+**Warning:** When using an existing PE installation any existing code or modules in `/etc/puppetlabs/code` will be copied to a backup directory `/etc/puppetlabs/code_bak_<timestamp>` in order to allow deploying code from Code Manager.
 
 # What you get from this control-repo
 
@@ -42,39 +42,39 @@ When you finish the instructions below, you will have the beginning of a best pr
 
 ### GitLab
 
-1. On a new server, install GitLab
+1. On a new server, install GitLab CE.
  - https://about.gitlab.com/downloads/
 
-2. After GitLab is installed you may sign into the web UI with the `root` user and password `5iveL!fe`
+2. After GitLab is installed, sign into the web UI with the user `root`
 
-2. In the GitLab UI, create a group called `puppet` ( this is case sensitive )
+2. In the GitLab UI, create a group called `puppet`
  - http://doc.gitlab.com/ce/workflow/groups.html
 
-3. In the GitLab UI, make a user for yourself
+3. In the GitLab UI, make yourself a user to edit and push code.
 
-4. From your laptop or development machine, make an SSH key to link with your user.
- - Note: this is used for your laptop to communicate with your GitLab server to push code
+4. From your laptop or development machine, make an SSH key and link it with your GitLab user.
+ - Note: The SSH key allows your laptop to communicate with the GitLab server and push code.
  - https://help.github.com/articles/generating-ssh-keys/
  - http://doc.gitlab.com/ce/ssh/README.html
 
-7. In the GitLab UI, add your user to the `puppet` group
- - Make sure to give your user at least master permissions so you can complete the below steps
+7. In the GitLab UI, add your user to the `puppet` group.
+ - You must give your user at least master permissions to complete the following steps.
  - Read more about permissions:
     - https://gitlab.com/gitlab-org/gitlab-ce/blob/master/doc/permissions/permissions.md
 
-8. In the GitLab UI, create a project called `control-repo` and set its Namespace to the `puppet` group
+8. In the GitLab UI, create a project called `control-repo` and set its Namespace to the `puppet` group.
 
-10. On your laptop, clone this PuppetLabs-RampUpProgram control repo
+10. On your laptop, clone this PuppetLabs-RampUpProgram control repo.
  - `git clone https://github.com/PuppetLabs-RampUpProgram/control-repo.git`
  - `cd control-repo`
 
-14. On your laptop, remove the origin remote
+14. On your laptop, remove the origin remote.
  - `git remote remove origin`
 
-15. On your laptop, add your internal repo as the origin remote
+15. On your laptop, add your local repo as the origin remote.
  - `git remote add origin <SSH URL of your GitLab repo>`
 
-16. On your laptop, push the production branch of the repo from your machine up to your Git server
+16. On your laptop, push the production branch of the repo from your machine up to your Git server.
  - `git push origin production`
 
 ### Stash
@@ -112,7 +112,7 @@ We will set up a deploy key in the Git server that will allow an SSH key we make
   /usr/bin/ssh-keygen -t rsa -b 2048 -C 'code_manager' -f /etc/puppetlabs/puppetserver/ssh/id-control_repo.rsa -q -N ''
   cat /etc/puppetlabs/puppetserver/ssh/id-control_repo.rsa.pub
   ~~~
-  
+
  - References:
     - https://help.github.com/articles/generating-ssh-keys/
     - http://doc.gitlab.com/ce/ssh/README.html
@@ -161,7 +161,7 @@ We will set up a deploy key in the Git server that will allow an SSH key we make
 
 ## Setup a webhook in your Git server
 
-Independent of which Git server you choose you will grab the webhook URL from your master.  Then each Git Server will have similar but slightly different ways to add the webhook.  
+Independent of which Git server you choose you will grab the webhook URL from your master.  Then each Git Server will have similar but slightly different ways to add the webhook.
 
 1. On your Puppet master
  - `cat /etc/puppetlabs/puppetserver/.puppetlabs/webhook_url.txt`
