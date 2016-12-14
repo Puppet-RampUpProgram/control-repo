@@ -8,6 +8,7 @@ mod "puppetlabs/concat",      '2.2.0'
 mod "puppet/hiera",           '2.1.2'
 mod "npwalker/pe_code_manager_webhook",  '2.0.1'
 mod "npwalker/pe_metric_curl_cron_jobs", '1.0.2'
+mod "npwalker/puppetdb_gc", '0.9.0'
 
 # Modules from Github using various references
 # Further examples: https://github.com/puppetlabs/r10k/blob/master/doc/puppetfile.mkd#examples
