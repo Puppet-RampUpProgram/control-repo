@@ -1,7 +1,6 @@
 Table of contents
 =================
 
-* [Join the \#ramp\-up channel on Puppet Community Slack](#join-the-ramp-up-channel-on-puppet-community-slack)
 * [Before starting](#before-starting)
 * [What you get from this control\-repo](#what-you-get-from-this-control-repo)
 * [How to set it all up](#how-to-set-it-all-up)
@@ -15,10 +14,6 @@ Table of contents
   * [Setup a webhook in your Git server](#setup-a-webhook-in-your-git-server)
     * [Gitlab](#gitlab-1)
   * [Test Code Manager](#test-code-manager)
-
-# Join the #ramp-up channel on Puppet Community Slack
-
-Our [Puppet Community Slack](http://slack.puppet.com) is a great way to interact with other Puppet users.  The #ramp-up channel is specifically for users who are new to Puppet Enterprise and using this repository. Other channels in the Puppet Community Slack are great for asking general Puppet questions.
 
 # Before starting
 
