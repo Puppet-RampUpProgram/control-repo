@@ -90,23 +90,28 @@ Coming soon!
 
 ### Install PE
 
-1. Download the latest version of the PE installer for your platform
+1. Download the latest version of the PE installer for your platform.
  - https://puppetlabs.com/download-puppet-enterprise
 2. SSH into your Puppet master and copy the installer tarball into `/tmp`
-2. Expand the tarball and `cd` into the directory
-3. Run `puppet-enterprise-installer` to install
+2. Expand the tarball and `cd` into the directory.
+3. Run `puppet-enterprise-installer` to install PE.
 
-If you run into any issues or have more questions about the installer you can see our docs here:
+If you have any issues with or questions about the installer, see our docs here:
 
 http://docs.puppetlabs.com/pe/latest/install_basic.html
 
-### Get the control-repo deployed on your master
+### Deploy control-repo on your master
 
-At this point you have our control-repo code deployed into your Git server.  However, we have one final challenge: getting that code onto your Puppet master.  In the end state the master will pull code from the Git server via Code Manager, however, at this moment your Puppet master does not have credentials to get code from the Git server.
+You've deployed our control-repo code to your Git server. Complete the following steps to:
 
-We will set up a deploy key in the Git server that will allow an SSH key we make to deploy the code and configure everything else.
++ Add your Git credentials to PE.
++ Deploy our control-repo code on your Puppet master.
 
-1. On your Puppet master, make an SSH key for r10k to connect to GitLab
+When you've completed the steps, the Puppet master pulls code from the Git server via Code Manager.
+
+To configure PE to deploy control-repo, make an SSH key on your Puppet master and add it as a deploy key in the Git server.
+
+1. On your Puppet master, make an SSH key so that r10k can connect to GitLab.
 
   ~~~
   mkdir /etc/puppetlabs/puppetserver/ssh
@@ -117,17 +122,17 @@ We will set up a deploy key in the Git server that will allow an SSH key we make
  - References:
     - https://help.github.com/articles/generating-ssh-keys/
     - http://doc.gitlab.com/ce/ssh/README.html
-2. In the GitLab UI, create a deploy key on the `control-repo` project
- - Paste in the public key from above
-3. Login to the PE console
-4. Navigate to the **Nodes > Classification** page
- - Click on the **PE Master** group
- - Click the **Classes** tab
- - Add the `puppet_enterprise::profile::master`
-    - Set the `r10k_remote` to the SSH URL from the front page of your GitLab repo
+2. In the GitLab UI, create a deploy key on the `control-repo` project.
+ - Paste in the SSH public key from step 1.
+3. Log into the PE console.
+4. Navigate to **Nodes > Classification**.
+ - Click the **PE Master** group.
+ - Click the **Classes** tab.
+ - Edit the `puppet_enterprise::profile::master` class:
+    - Set the `r10k_remote` parameter to the SSH URL from the front page of your GitLab repo.
     - Set the `r10k_private_key` parameter to `/etc/puppetlabs/puppetserver/ssh/id-control_repo.rsa`
- - **Commit** your changes
-5. On your Puppet master
+ - **Commit** your changes.
+5. On your Puppet master,
  - Run:
 
     ~~~
@@ -136,20 +141,20 @@ We will set up a deploy key in the Git server that will allow an SSH key we make
     puppet agent -t
     ~~~
 
-5. Navigate back to the **Nodes > Classification** page
- - Near the top of the page select "add a group"
- - Type `role::all_in_one_pe` for the group name
-    - Click the **Add Group** button
- - Click the **add membership rules, classes and variables** link that appears
-    - Below **Pin specific nodes to the group** type your master's FQDN into the box
-       - Click **pin node**
- - Select the **Classes** tab
-    - On the right hand side, click the **Refresh** link
-       - Wait for this to complete
-    - In the **add new classes** box type `role::all_in_one_pe`
-       - Click **add class**
- - **Commit** your changes
-8. On your Puppet master
+5. In the PE console, navigate to **Nodes > Classification**.
+ - Near the top of the page select "add a group".
+ - For the group name enter `role::all_in_one_pe`
+    - Click the **Add Group** button.
+ - Click the **add membership rules, classes and variables** link.
+    - Below **Pin specific nodes to the group** enter your master's FQDN.
+       - Click **pin node**.
+ - Select the **Classes** tab.
+    - On the right hand side, click the **Refresh** link.
+       - Wait for the classes to refresh.
+    - In the **add new classes** field enter `role::all_in_one_pe`
+       - Click **add class**.
+ - **Commit** your changes.
+8. On your Puppet master,
  - Run:
 
     ~~~
@@ -158,7 +163,7 @@ We will set up a deploy key in the Git server that will allow an SSH key we make
     puppet agent -t
     ~~~
 
-9. Code Manager is configured and has been used to deploy your code
+Code Manager is configured and has been used to deploy control-repo's code.
 
 ## Setup a webhook in your Git server
 
