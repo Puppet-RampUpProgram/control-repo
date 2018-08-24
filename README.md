@@ -48,34 +48,34 @@ When you finish the instructions below, you will have the beginning of a best pr
 2. After GitLab is installed, sign into the web UI with the user `root`.
  - The first time you visit the UI it will force you to enter a password for the `root` user.
 
-2. In the GitLab UI, create a group called `puppet`.
+3. In the GitLab UI, create a group called `puppet`.
  - http://doc.gitlab.com/ce/workflow/groups.html
 
-3. In the GitLab UI, make yourself a user to edit and push code.
+4. In the GitLab UI, make yourself a user to edit and push code.
 
-4. From your laptop or development machine, make an SSH key and link it with your GitLab user.
+5. From your laptop or development machine, make an SSH key and link it with your GitLab user.
  - Note: The SSH key allows your laptop to communicate with the GitLab server and push code.
  - https://help.github.com/articles/generating-ssh-keys/
  - http://doc.gitlab.com/ce/ssh/README.html
 
-7. In the GitLab UI, add your user to the `puppet` group.
+6. In the GitLab UI, add your user to the `puppet` group.
  - You must give your user at least master permissions to complete the following steps.
  - Read more about permissions:
     - https://gitlab.com/gitlab-org/gitlab-ce/blob/master/doc/permissions/permissions.md
 
-8. In the GitLab UI, create a project called `control-repo` and set its Namespace to the `puppet` group.
+7. In the GitLab UI, create a project called `control-repo` and set its Namespace to the `puppet` group.
 
-10. On your laptop, clone this PuppetLabs-RampUpProgram control repo.
+8. On your laptop, clone this PuppetLabs-RampUpProgram control repo.
  - `git clone https://github.com/PuppetLabs-RampUpProgram/control-repo.git`
  - `cd control-repo`
 
-14. On your laptop, remove the origin remote.
+9. On your laptop, remove the origin remote.
  - `git remote remove origin`
 
-15. On your laptop, add your GitLab repo as the origin remote.
+10. On your laptop, add your GitLab repo as the origin remote.
  - `git remote add origin <SSH URL of your GitLab repo>`
 
-16. On your laptop, push the production branch of the repo from your machine up to your Git server.
+11. On your laptop, push the production branch of the repo from your machine up to your Git server.
  - `git push origin production`
 
 ### Stash
@@ -93,8 +93,8 @@ Coming soon!
 1. Download the latest version of the PE installer for your platform
  - https://puppetlabs.com/download-puppet-enterprise
 2. SSH into your Puppet master and copy the installer tarball into `/tmp`
-2. Expand the tarball and `cd` into the directory
-3. Run `puppet-enterprise-installer` to install
+3. Expand the tarball and `cd` into the directory
+4. Run `puppet-enterprise-installer` to install
 
 If you run into any issues or have more questions about the installer you can see our docs here:
 
@@ -120,10 +120,11 @@ We will set up a deploy key in the Git server that will allow an SSH key we make
 2. In the GitLab UI, create a deploy key on the `control-repo` project
  - Paste in the public key from above
 3. Login to the PE console
-4. Navigate to the **Nodes > Classification** page
- - Click on the **PE Master** group
- - Click the **Classes** tab
- - Add the `puppet_enterprise::profile::master`
+
+4. Navigate to the **Classification** page under the **Configure** item on the left of the page
+ - Click on the **PE Master** group under **All Nodes -> PE Infastructure**
+ - Click the **Configuration** tab
+ - Add the `puppet_enterprise::profile::master` class if not already present
     - Set the `r10k_remote` to the SSH URL from the front page of your GitLab repo
     - Set the `r10k_private_key` parameter to `/etc/puppetlabs/puppetserver/ssh/id-control_repo.rsa`
  - **Commit** your changes
@@ -136,20 +137,20 @@ We will set up a deploy key in the Git server that will allow an SSH key we make
     puppet agent -t
     ~~~
 
-5. Navigate back to the **Nodes > Classification** page
- - Near the top of the page select "add a group"
+6. Navigate back to the **Classification** page under the **Configure** item on the left of the page
+ - Near the top of the page select "Add group..."
  - Type `role::all_in_one_pe` for the group name
-    - Click the **Add Group** button
+    - Click the **Add** button
  - Click the **add membership rules, classes and variables** link that appears
-    - Below **Pin specific nodes to the group** type your master's FQDN into the box
+    - Type your master's FQDN into the **Node name** box under **Certname**
        - Click **pin node**
- - Select the **Classes** tab
+ - Select the **Configuration** tab
     - On the right hand side, click the **Refresh** link
        - Wait for this to complete
-    - In the **add new classes** box type `role::all_in_one_pe`
+    - In the **Add new class** box type `role::all_in_one_pe`
        - Click **add class**
  - **Commit** your changes
-8. On your Puppet master
+7. On your Puppet master
  - Run:
 
     ~~~
@@ -158,31 +159,38 @@ We will set up a deploy key in the Git server that will allow an SSH key we make
     puppet agent -t
     ~~~
 
-9. Code Manager is configured and has been used to deploy your code
+8. Code Manager is configured and has been used to deploy your code
 
 ## Setup a webhook in your Git server
 
 Independent of which Git server you choose you will grab the webhook URL from your master.  Then each Git Server will have similar but slightly different ways to add the webhook.
 
-1. On your Puppet master
- - `cat /etc/puppetlabs/puppetserver/.puppetlabs/webhook_url.txt`
+On your Puppet master:
+ ```
+ cat /etc/puppetlabs/puppetserver/.puppetlabs/webhook_url.txt
+ ```
 
 ### Gitlab
 
-2. In your Git server's UI, navigate to the control-repo repository
- -  In the left hand pane, scroll to the bottom and select **settings**
- - In the left hand pane, select **webhooks**
-3. Paste the above webhook URL into the URL field
-4. In the trigger section mark the checkbox for **push events** only
-3. Disable SSL verification on the webhook
+1. In your Git server's UI, navigate to the control-repo repository
+ -  In the left hand pane, scroll to the bottom and select **Settings -> Integrations**
+2. Paste the above webhook URL into the URL field
+
+3. In the trigger section mark the checkbox for **push events** only
+
+4. Disable SSL verification on the webhook
  - Since Code Manager uses a self-signed cert from the Puppet CA it is not generally trusted
-3. After you created the webhook use "test webhook" or similar functionality to confirm it works
+5. Click **Add webhook**
+ - If you receive an error, we need to enable the setting for outbound requests.  Navigate to the Admin area (wrench icon at the top), then go to **Settings** and expand the section labeled **Outbound requests**.  Check the box next to *￼Allow requests to the local network from hooks and service* and click **Save changes**
+ - Add the webhook by refollowing the steps in this section
+6. After you created the webhook use "test webhook" or similar functionality to confirm it works
 
 ## Test Code Manager
 
 One of the components setup by this control-repo is that when you "push" code to your Git server, the git server will inform the Puppet master to deploy the branch you just pushed.
 
 1. On your Puppet Master, `tail -f /var/log/puppetlabs/puppetserver/puppetserver.log`.
+
 2. On your laptop in a separate terminal window:
  - Add a new file
 
