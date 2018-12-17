@@ -1,0 +1,4 @@
+---
+
+profile::app::tomcat::webserver::download_url: 'https://www-us.apache.org/dist/tomcat/tomcat-8/v8.5.35/bin/apache-tomcat-8.5.35-windows-x64.zip'
+profile::app::tomcat::webserver::tomcat_install_path: 'C:\Program Files\Tomcat'

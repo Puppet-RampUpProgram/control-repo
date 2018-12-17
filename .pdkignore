@@ -1,7 +1,6 @@
 .git/
 .*.sw[op]
 .metadata
-.onceover
 .yardoc
 .yardwarns
 *.iml
