@@ -9,6 +9,7 @@ before_install:
   - gem update --system
   - gem --version
   - bundle -v
+  - bundle install --path vendor/bundle --jobs $(nproc)
 script:
   - 'bundle exec rake $CHECK'
 bundler_args: --without system_tests
@@ -36,12 +37,3 @@ branches:
     - /^v\d/
 notifications:
   email: false
-deploy:
-  provider: puppetforge
-  user: puppet
-  password:
-    secure: ""
-  on:
-    tags: true
-    all_branches: true
-    condition: "$DEPLOY_TO_FORGE = yes"
