@@ -1,20 +1,38 @@
 # This is a example profile to deploy fastb application software.
 class profile::app::fastb (
-  Stdlib::Httpsurl $download_url = 'https://tomcat.apache.org/tomcat-8.0-doc/appdev/sample/sample.war',
-  String $sha1_sum = '80f5053b166c69d81697ba21113c673f8372aca0',
-  Stdlib::Absolutepath $app_path = '/opt/tomcat',
+  Stdlib::Httpsurl $download_url = 'https://tomcat.apache.org/tomcat-9.0-doc/appdev/sample/sample.war',
+  Stdlib::Absolutepath $app_path = '/opt/tomcat/fastb',
 ) {
-  require profile::os::archives
-  $temp_dir = $profile::os::archives::temp_dir
+  include profile::app::tomcat::webserver
 
-  archive { "${temp_dir}/fastb_app.war":
-    ensure        => present,
-    extract       => true,
-    extract_path  => $app_path,
-    source        => $download_url,
-    checksum      => $sha1_sum,
-    checksum_type => 'sha1',
-    creates       => "${app_path}/fastb_app.war",
-    cleanup       => true,
+  tomcat::instance { 'tomcat8-fastb':
+    catalina_home => "${app_path}/..",
+    catalina_base => $app_path,
   }
+
+  tomcat::war { "${app_path}/fastb_app.war":
+    catalina_base => $app_path,
+    war_source    => $download_url,
+  }
+
+  tomcat::instance { 'tomcat-second':
+    catalina_home => '/opt/tomcat',
+    catalina_base => '/opt/tomcat/second',
+  }
+
+  # Change the default port of the second instance server and HTTP connector
+  tomcat::config::server { 'tomcat-second':
+    catalina_base => '/opt/tomcat/second',
+    port          => '8006',
+  }
+
+  tomcat::config::server::connector { 'tomcat-second-http':
+    catalina_base         => '/opt/tomcat/second',
+    port                  => '8081',
+    protocol              => 'HTTP/1.1',
+    additional_attributes => {
+      'redirectPort' => '8443'
+    },
+  }
+
 }

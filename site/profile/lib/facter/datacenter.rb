@@ -4,6 +4,7 @@ Facter.add(:datacenter) do
       'lax'    => ['lax', 'lax2', 'hq'],
       'dc'     => ['dc', 'dc2', 'dc3', 'foo'],
       'london' => ['lon', 'uk', 'london', 'bar'],
+      'none'   => ['localhost', 'local'],
     }
 
     # Assume that all hostnames look like this:
