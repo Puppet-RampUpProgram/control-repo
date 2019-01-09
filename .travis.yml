@@ -31,6 +31,11 @@ matrix:
     -
       env: PUPPET_GEM_VERSION="~> 4.0" CHECK=parallel_spec
       rvm: 2.1.9
+    -
+      env: PUPPET_GEM_VERSION="~> 5.5" CHECK=parallel_onceover
+      script:
+        - bundle exec onceover run spec
+      rvm: 2.4.4
 branches:
   only:
     - master
