@@ -20,10 +20,9 @@ class_groups:
     - '/role::spider/'
     - 'profile::os::base'
   linux:
+    - '/role::sup_svc/'
     - '/role::fastb/'
     - profile::os::base
-  solaris:
-    - '/role::fastb::web/'
 # You can group nodes here to save typing
 # We have created a 'non_windows_nodes' group because we can't
 # give you Windows vagrant boxes to test with because licensing,
@@ -49,7 +48,7 @@ test_matrix:
       classes: 'windows'
       tests: 'spec'
   - solaris_nodes:
-      classes: 'solaris'
+      classes: 'base'
       tests: 'spec'
   - non_windows_nodes: 
       classes: 
