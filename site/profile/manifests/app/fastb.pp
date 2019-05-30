@@ -28,7 +28,7 @@ class profile::app::fastb (
 
   tomcat::config::server::connector { 'tomcat-second-http':
     catalina_base         => '/opt/tomcat/second',
-    port                  => '8081',
+    port                  => '8081',,
     protocol              => 'HTTP/1.1',
     additional_attributes => {
       'redirectPort' => '8443'
