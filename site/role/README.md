@@ -9,11 +9,14 @@ we're gonna go ahead and say that anyway.
 
 ## Organization and Namespaces
 
-Roles should be organized in a hierarchical form with product categories that descend into more specific things. DO NOT just throw all your roles at the root of the `manifests/` folder. Oh, and please use sub-folders for related roles.
+Roles should be organized in a hierarchical form with product categories that descend into more specific services for the product. DO NOT just throw all your roles at the root of the `manifests/` folder. Oh, and please use sub-folders for related roles.
 
 ### The Product folders
 
 `/manifests/<product>/`
 
   * This directory should contain roles that manage nodes running specific product line functions.
-  * For example, `/manifests/fastb/web_be.pp` is `FastB product Web Back-end`.
+  * For example:
+    * `./manifests/fastb/web_be.pp` is `FastB product Web Backend`.
+    * `./manifests/spiders/database.pp` is `Spiders product SQL Database Backend`. 
+  

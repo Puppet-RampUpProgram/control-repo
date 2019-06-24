@@ -15,19 +15,26 @@ Profiles should be organized in a hierarchical form with a few top-level categor
 
 ### The OS folder
 
-`/manifests/os/`
+`./manifests/os/`
 
   * This directory should contain profiles that manage items built-in to an operating system. For example, DNS, NTP, Users, firewall rules, etc....
   * If the thing being managed is "out of the box", it goes here.
 
-`/manifests/os/<os_name>/`
+`./manifests/os/baseline.pp`
+
+  * Profile that will wrap the OS level profiles 
+  * Profile that build to support all business supported OS.
+  * Profile to implement the minimium base that security, product and sysadmins will allow on a company network.
+  * Profile built to install the base software for a company that is identified as site wide software, ie backup etc.
+
+`./manifests/os/<os_name>/<what it is for>`
 
   * Profiles that are specific to built-in settings of one operating system go here.
-  * For example, `/manifests/os/windows/`, `/manifests/os/linux/`, or `/manifests/os/aix/`.
+  * For example, `/manifests/os/windows/security.pp`, `/manifests/os/linux/firewall.pp`, or `/manifests/os/solaris/enable_ssh.pp`.
 
 ### The App folder
 
-`/manifests/app/`
+`./manifests/app/<app subdir>/<profile name>.pp`
 
   * This directory should contain profiles to manage applications stacks.
   * An "app" is anything that does **not** come out of the box or is **not** built-in to the operating system.
@@ -36,3 +43,15 @@ Profiles should be organized in a hierarchical form with a few top-level categor
   * Avoid ambiguous profile names. `profile::app::splunk::forwarder` is better than `profile::app::splunk`.
   * Other examples: `/manifests/app/apache.pp`, `/manifests/app/sql/server.pp`, or `/manifests/app/f5/load_balancer.pp`.
 
+`./manifests/cloud/<cloud provider>/<profile name>.pp`
+
+  * This directory is for profiles that will be used to implement cloud API services.
+  * This should be things like profiles to communicate to API's like Azure, Google Cloud, OpenStack, etc.
+
+`./lib/facter/`
+
+  * This will be used a location to store site (company) specific facts not specific to a component module.
+
+`./functions/`
+
+  * This directory is for site specific functions not related to modules.

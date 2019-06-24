@@ -2,7 +2,7 @@
 # test all roles in repo
 classes:
   - '/role::/'
-  - profile::os::base
+  - profile::os::baseline
 
 # Nodes to tests classes on, this refers to a 'factset' or 'nodeset'
 # depending on weather you are running 'spec' or 'acceptance' tests
@@ -15,14 +15,14 @@ nodes:
 # You can group classes here to save typing
 class_groups:
   base:
-    - 'profile::os::base'
+    - 'profile::os::baseline'
   windows:
     - '/role::spider/'
-    - 'profile::os::base'
+    - 'profile::os::baseline'
   linux:
     - '/role::sup_svc/'
     - '/role::fastb/'
-    - profile::os::base
+    - profile::os::baseline
 # You can group nodes here to save typing
 # We have created a 'non_windows_nodes' group because we can't
 # give you Windows vagrant boxes to test with because licensing,

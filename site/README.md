@@ -15,13 +15,16 @@ These examples have been constructed with the following requirements:
     - Solaris 11.2
   - Two products should be represented
     - Spider
-      - Windows product
-      - IIS Web service
-      - F5 loadbalancer
-      - SQL Database server
+      - Windows systems hosting the product
+      - IIS Web service 'role::spiders::web_be'
+      - HAProxy loadbalancer 'role::spiders::balancer'
+      - SQL Database server 'role::spiders::database'
     - Fastb
-      - Linux and Solaris product
-      - Tomcat web backend
-      - HAProxy loadbalancer
-      - MYSQL Database server
+      - Linux and Solaris systmes hoting the product
+      - Tomcat web backend 'role::fastb::web_be'
+      - HAProxy loadbalancer 'role::fastb::balancer'
+      - MYSQL Database server 'role::fastb::database'
     - These products are examples and will be deploying a `hello world` code base
+  - Support services
+    - While products usually do not share hosts support services do
+    - Example of monitoring service 'role::sup\_svc::monitoring::server'

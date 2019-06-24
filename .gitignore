@@ -1,6 +1,7 @@
 .git/
 .*.sw[op]
 .metadata
+.vscode
 .onceover
 .yardoc
 .yardwarns

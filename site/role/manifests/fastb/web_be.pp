@@ -2,6 +2,6 @@
 # "Fast B" 
 # This is a web backend for that product.
 class role::fastb::web_be {
-  include profile::os::base
+  include profile::os::baseline
   include profile::app::fastb
 }

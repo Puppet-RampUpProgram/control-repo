@@ -6,13 +6,13 @@
 # @param name_servers An array of DNS name servers to use.
 # @param search_path An array of domain suffixes to use in the DNS search path.
 #
-class profile::os::dns_resolver (
+class profile::os::baseline::dns_resolver (
   Array[String[1]] $name_servers,
   Array[String[1]] $search_path,
 ) {
 
   case $facts['kernel'] {
-    'linux','aix': {
+    'linux','solaris': {
 
       # Use saz/resolv_conf Forge module
       class { 'resolv_conf':

@@ -1,6 +1,6 @@
 # This is a example profile to deploy fastb application software.
 class profile::app::fastb (
-  Stdlib::Httpsurl $download_url = 'https://tomcat.apache.org/tomcat-9.0-doc/appdev/sample/sample.war',
+  Stdlib::HTTPSUrl $download_url = 'https://tomcat.apache.org/tomcat-9.0-doc/appdev/sample/sample.war',
   Stdlib::Absolutepath $app_path = '/opt/tomcat/fastb',
 ) {
   include profile::app::tomcat::webserver
@@ -28,7 +28,7 @@ class profile::app::fastb (
 
   tomcat::config::server::connector { 'tomcat-second-http':
     catalina_base         => '/opt/tomcat/second',
-    port                  => '8081',,
+    port                  => '8081',
     protocol              => 'HTTP/1.1',
     additional_attributes => {
       'redirectPort' => '8443'

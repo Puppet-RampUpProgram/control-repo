@@ -1,7 +1,5 @@
-# This is an example of a product called
-# "Fast B" 
-# This is a monitoring server for that product.
+# This is a monitoring server for that many products and services
 class role::sup_svc::monitor::server {
-  include profile::os::base
-  include profile::app::icinga
+  include profile::os::baseline
+  include profile::app::icinga::server
 }
