@@ -1,4 +1,5 @@
 .git/
+.vscode
 .*.sw[op]
 .metadata
 .vscode
