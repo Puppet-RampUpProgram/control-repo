@@ -1,3 +1,4 @@
+# class for puppet master
 class profile::puppetmaster (
   $hiera_yaml = "${::settings::confdir}/hiera.yaml"
 ){

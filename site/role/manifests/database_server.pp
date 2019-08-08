@@ -1,3 +1,4 @@
+# class role::database_server
 class role::database_server {
 
   #This role would be made of all the profiles that need to be included to make a database server work

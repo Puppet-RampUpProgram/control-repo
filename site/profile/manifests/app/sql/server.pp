@@ -4,7 +4,7 @@
 class profile::app::sql::server (
 # Commented out due to mount not working
 #  Stdlib::Absolutepath $sql_iso_to_mount,
-  String[1] $sa_password, 
+  String[1] $sa_password,
   Stdlib::Absolutepath $temp_db_location                                               = 'D:\\TempDB',
   Stdlib::Absolutepath $sql_source                                                     = 'K:\\',
   String[1] $sql_version_fact                                                          = 'SQL_2017',
