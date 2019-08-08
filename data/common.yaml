@@ -1,0 +1,18 @@
+---
+message: "This node is using common data"
+
+#Enable code manager
+puppet_enterprise::profile::master::code_manager_auto_configure: true
+puppet_enterprise::master::code_manager::authenticate_webhook: false
+puppet_enterprise::master::code_manager::manage_private_key: false
+#pe-console-services tuning
+#https://docs.puppetlabs.com/pe/latest/console_config.html#tuning-the-classifier-synchronization-period
+#disable classifier scheduled sync and rely on r10k postrun command to sync the classes
+puppet_enterprise::profile::console::classifier_synchronization_period: 0
+
+# example for deep lookup
+# X11Forwarding will be overwritten by virtual/virtualbox to 'yes'
+profile::os::linux::security::ssh_server_opts:
+    PasswordAuthentication: 'no'
+    SyslogFacility: 'AUTHPRIV'
+    X11Forwarding: 'no'
