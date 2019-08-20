@@ -11,9 +11,9 @@ These examples have been constructed with the following requirements:
 
 | Supported OS | Product Role | State |
 |--------------------------|---------------------|-----|
-| Win 2012r2 | 'role:\:spider::web\_be' | WIP |
-| Win 2012r2 | 'role:\:spider::database' | WIP |
-| CentOS 7  | 'role:\:spider::balancer' | WIP |
+| Win 2012r2 | `role::spider::web\_be` | WIP |
+| Win 2012r2 | `role::spider::database` | WIP |
+| CentOS 7  | `role::spider::balancer` | WIP |
 
 
   - Modeling should support three operating systems
