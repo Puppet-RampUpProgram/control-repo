@@ -9,6 +9,14 @@ we're gonna go ahead and say that anyway.
 
 These examples have been constructed with the following requirements:
 
+=======
+| Supported OS | Product Role | State |
+|--------------------------|---------------------|-----|
+| Win 2012r2 | `role::spider::web_be` | WIP |
+| Win 2012r2 | `role::spider::database` | WIP |
+| CentOS 7  | `role::spider::balancer` | WIP |
+
+
   - Modeling should support three operating systems
     - Windows 2012R2
     - CentOS (6,7)
@@ -20,11 +28,11 @@ These examples have been constructed with the following requirements:
       - HAProxy loadbalancer 'role::spiders::balancer'
       - SQL Database server 'role::spiders::database'
     - Fastb
-      - Linux and Solaris systmes hoting the product
+      - Linux and Solaris systems hosting the product
       - Tomcat web backend 'role::fastb::web_be'
       - HAProxy loadbalancer 'role::fastb::balancer'
       - MYSQL Database server 'role::fastb::database'
-    - These products are examples and will be deploying a `hello world` code base
+    - These products are examples and will be deploying a `hello world` java application code base
   - Support services
     - While products usually do not share hosts support services do
     - Example of monitoring service 'role::sup\_svc::monitoring::server'
