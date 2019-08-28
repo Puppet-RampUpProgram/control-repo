@@ -1,4 +1,4 @@
 # This is a role to add to the Puppet compiler group
-class  role::sup_svc::puppet::compiler {
+class  example_role::sup_svc::puppet::compiler {
   include profile::os::baseline
 }
