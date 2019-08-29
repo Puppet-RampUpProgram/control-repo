@@ -15,11 +15,11 @@ class profile::app::puppet::masters (
   $puppetdb_puppet_ca = 'resources[certname] { type = "Class" and title = "Puppet_enterprise::Profile::Certificate_authority" }'
   $puppet_ca_nodes = puppetdb_query($puppetdb_puppet_ca).each |$value| { $value["certname"] }
   # This will check if puppet_ca param was assigned and if not use $puppet_enterprise::certificate_authority_host
-  if $puppet_ca == undef {
-    $pe_ca = $puppet_enterprise::certificate_authority_host
-  } else {
-    $pe_ca = $puppet_ca
-  }
+#  if $puppet_ca == undef {
+#    $pe_ca = $puppet_enterprise::certificate_authority_host
+#  } else {
+#    $pe_ca = $puppet_ca
+#  }
 
   if $hiera_private_key_exists {
     $warning_content = "${hiera_private_key} file should be removed from the control repo and all eyaml encrypted \
