@@ -11,7 +11,7 @@ class profile::app::puppet::masters (
   $hiera_private_key_exists = inline_template("<% if File.exist?('${hiera_private_key}') -%>true<% end -%>")
 
   # This will quiery the puppet_db to see what hosts are running as the Puppet CA.
-  $puppetdb_puppet_ca = [ 'from', 'nodes', ['=', ['type', 'Class'], 'and', ['title', 'Puppet_enterprise::Profile::Certificate_authority']] ]
+  $puppetdb_puppet_ca = [ 'from', 'nodes', ['==', ['type', 'Class'], 'and', ['title', 'Puppet_enterprise::Profile::Certificate_authority']] ]
   $puppet_ca_nodes = puppetdb_query($puppetdb_puppet_ca).each |$value| { $value["certname"] }
   # This will check if puppet_ca param was assigned and if not use $puppet_enterprise::certificate_authority_host
   if $puppet_ca == undef {
