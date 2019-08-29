@@ -15,7 +15,7 @@ Roles should be organized in a hierarchical form with product categories that de
 
 `/manifests/<product>/`
 
-  * This directory should contain roles that manage nodes running specific product line functions.
+  * This directory should contain example roles that manage nodes running specific product line functions.
   * For example:
     * `./manifests/fastb/web_be.pp` is `FastB product Web Backend`.
     * `./manifests/spiders/database.pp` is `Spiders product SQL Database Backend`. 
