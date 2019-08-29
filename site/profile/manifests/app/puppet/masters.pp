@@ -22,8 +22,8 @@ class profile::app::puppet::masters (
   }
 
   if $hiera_private_key_exists {
-    $warning_content = "${hiera_private_key} file should be removed from the control repo and all eyaml encrypted \
-    data should be re-encrypted with new keys.  DO NOT PLACE PRIVATE KEY in control-repo! \
+    $warning_content = "${hiera_private_key} file should be removed from the control repo!\n \
+    Any eyaml encrypted data should be re-encrypted with new keys.  DO NOT PLACE PRIVATE KEY in control-repo!\n \
     See https://github.com/voxpupuli/hiera-eyaml#generate-keys"
 
     warning($warning_content)
