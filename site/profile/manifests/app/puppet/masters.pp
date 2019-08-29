@@ -37,6 +37,9 @@ class profile::app::puppet::masters (
       include profile::app::puppet::compiler
   } else {
     # This is a Master of Masters section to add classes to
+    notify { 'Master message':
+      message => "$facts['fqdn'] is running the Puppet_enterprise::Profile::Certificate_authority class",
+    }
   }
 
 }
