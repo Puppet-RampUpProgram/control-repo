@@ -25,7 +25,7 @@ class profile::app::puppet::masters (
     data should be re-encrypted with new keys.  DO NOT PLACE PRIVATE KEY in control-repo! \
     See https://github.com/voxpupuli/hiera-eyaml#generate-keys"
 
-    warning("${warning_content})
+    warning("${warning_content}")
     notify { 'key error':
       message => "${warning_content}",
     }
