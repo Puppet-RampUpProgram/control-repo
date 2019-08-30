@@ -182,7 +182,9 @@ One of the components setup by this control-repo is that when you "push" code to
 
 The Roles and Profiles in this repo are usable examples.  Some of the code has been commented out to protect the inocent but the examples sound.  Please review the following README's for a more detailed description of the examples.
 
-  * The role and profile patern (method for naming and suggestions for hierachy) are only examples and suggestions. 
+  * The role and profile patern (method for naming and suggestions for hierachy) are only examples and suggestions.
   * Some of the Windows profiles may not totally work due to depencies.
     * Software download locations
     * Method for package install ie (chocolatey, or wmi, etc.) are not specified.
+  
+  **Please see [Role and Profile examples](./site/README.md)**
