@@ -16,3 +16,16 @@ profile::os::linux::security::ssh_server_opts:
     PasswordAuthentication: 'no'
     SyslogFacility: 'AUTHPRIV'
     X11Forwarding: 'no'
+
+# example of eyaml encrypted mysql password
+profile::app::mysql::server::root_password: >
+    ENC[PKCS7,MIIBiQYJKoZIhvcNAQcDoIIBejCCAXYCAQAxggEhMIIBHQIBADAFMAACAQEw
+    DQYJKoZIhvcNAQEBBQAEggEAn1OG1qv3jepoxIrbfU8lOpVc3+4HuyLlncet
+    QtWvvWRdTtkUu/3A+0rLHbtLHQNo8skLgJZadaQHR3JfAXW+OfKGhS31Q5sb
+    yOxIWD7t9J7ud1Ks+w2Ejmy2W5SI5W5FAWFM3IpKxTe2LZI2nRQ6IPL1PSG6
+    WsU6qeDI47mQtqP030UNBchZafpUlN4KpknSLijhy/Hb1kRU+wyWc1ESt50L
+    RmLseK+lDx6r8g8DH9XVLM9YpvexnvcyPO2i7i//zRnN1dH6y0D7r3oH3duI
+    YwqwI1sPPgPVoWTN3bP3sKOoAdTiwXpgakP9rVanxw67S7VtJOJK3ujjP++l
+    orMyfTBMBgkqhkiG9w0BBwEwHQYJYIZIAWUDBAEqBBADm3woaNcUD4FUmLZI
+    dsaYgCDJ4RUT7bXT1cHxBdHbvqgype082aVHqhqKHC9CI9mJGQ==]
+

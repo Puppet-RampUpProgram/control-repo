@@ -26,3 +26,5 @@ hierarchy:
   - name: "Common data (can be encrypted)" # Using same file as unencrypted
     path: "common.yaml"
 
+  - name: "Should be deleted data (this data is for testing purposes only)" # feel free to delete this layer
+    path: "to_be_deleted.yaml"
