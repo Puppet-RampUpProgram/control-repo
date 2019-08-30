@@ -21,6 +21,17 @@ mod 'cyberious-pget',                    '1.1.0'
 mod 'cyberious-windows_java',            '1.0.2'
 # These modules are to assist in securing the os's
 mod 'autostructure-secure_windows',      '1.0.5'
+mod 'ayohrling-local_security_policy',   '0.6.1'
+mod 'autostructure-auditpol',            '1.0.0'
+mod 'puppetlabs-acl',                    '2.1.0'
+mod 'puppetlabs-registry',               '2.1.0'
+mod 'puppet-windowsfeature',             '3.2.2'
+mod 'autostructure-applocker',           '1.0.0'
+mod 'puppet-sslcertificate',             '3.4.0'
+mod 'ipcrm-registry_acl',                '0.0.6'
+mod 'puppetlabs-powershell',             '2.3.0'
+mod 'puppet-windows_firewall',           '2.0.2'
+mod 'autostructure-ad_acl',              '1.0.0'
 mod 'shearn89-toughen',                  '1.0.0'
 
 #mod 'tomcat',
