@@ -1,6 +1,6 @@
 # This profile is to normalize archive for a site
 # it will set temp dir and install dir for the build
-class profile::os::baseline::archives (
+class profile::os::baseline::archive (
   Optional[Stdlib::Absolutepath] $in_temp_path = undef,
 ) {
   include '::archive'
