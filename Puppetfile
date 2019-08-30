@@ -19,6 +19,9 @@ mod 'puppetlabs-powershell',             '2.2.0'
 mod 'puppet-windows_env',                '3.2.0'
 mod 'cyberious-pget',                    '1.1.0'
 mod 'cyberious-windows_java',            '1.0.2'
+# These modules are to assist in securing the os's
+mod 'autostructure-secure_windows',      '1.0.5'
+mod 'shearn89-toughen',                  '1.0.0'
 
 #mod 'tomcat',
 #  git: 'https://github.com/spidersddd/puppetlabs-tomcat'

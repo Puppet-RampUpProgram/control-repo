@@ -1,28 +1,17 @@
-# This profile is example of security configurations for 
-# site specific security settings.
-class profile::os::linux::security (
-  # This allows hiera to control if the saz/ssh::server class should be used 
-  # on perspective agent hosts.  Setting to false will mean the agents ssh server
-  # configuration will not be managed.  If 'profile::os::linux::security::ssh_server'
-  # to change this behavior
-  Boolean $ssh_server = true
-) {
-  if $ssh_server {
-    # This lookup allows the hash to be constructed over multiple hierarchies
-    # example is located in common.yaml and virtual/virtualbox.yaml
-    $ssh_server_opts = lookup( 'name' => 'profile::os::linux::security::ssh_server_opts',
-      { 'merge'                          => {
-        'strategy'                     => 'deep',
-        'default_value'                =>  {} }, })
-
-    $ssh_client_opts = lookup( 'name' => 'profile::os::linux::security::ssh_client_opts',
-      { 'merge'                          => {
-        'strategy'                     => 'deep',
-        'default_value'                => {} }, })
-
-    # Pass the found options to saz/ssh server class
-    class { 'ssh::server':
-      options => $ssh_server_opts,
-    }
-  }
+# This is a class example for security
+class profile::os::linux::security {
+  include toughen::auditing
+  include toughen::banners
+  include toughen::boot
+  include toughen::cron
+  include toughen::filesystem
+  include toughen::init
+  include toughen::legacy_services
+  include toughen::mandatory_access
+  include toughen::network
+  include toughen::pam
+  include toughen::perms_owners
+  include toughen::process
+  include toughen::services
+  include toughen::shadow
 }

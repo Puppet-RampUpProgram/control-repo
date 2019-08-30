@@ -14,14 +14,14 @@ class profile::os::baseline (
         name_servers => $name_servers,
         search_path  => $search_path,
       }
-      #include 'profile::os::linux::security'
+      include 'profile::os::linux::security'
     }
     'windows': {
       class { 'profile::os::baseline::dns_resolver':
         name_servers => $name_servers,
         search_path  => $search_path,
       }
-      #include profile::os::windows::security
+      include profile::os::windows::security
     }
     'Solaris': {
       class { 'profile::os::baseline::dns_resolver':

@@ -10,4 +10,5 @@ class profile::os::windows::security (
   if $enable_rdesktop {
     include profile::os::windows::enable_remote_desktop
   }
+  contain secure_windows
 }
