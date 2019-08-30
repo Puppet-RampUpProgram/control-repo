@@ -12,7 +12,7 @@ class profile::os::baseline::dns_resolver (
 ) {
 
   case $facts['kernel'] {
-    'linux','solaris': {
+    'Linux','Solaris': {
 
       # Use saz/resolv_conf Forge module
       class { 'resolv_conf':
@@ -48,7 +48,7 @@ class profile::os::baseline::dns_resolver (
       }
 
     }
-    default: { notify { 'This profile does not support your OS': } }
+    default: { fail("This profile does not support your OS type ${facts['kernel']}") }
   }
 
 }
