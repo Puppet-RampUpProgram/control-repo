@@ -176,3 +176,6 @@ profile::app::puppet::compiler::ssh_public_key_content: >
     4/UWR2PSBOmWb2uE3KWnVPJEfLGKyZhjExOXXH7IAsf8Nn5IGcpfO0nD48QO
     U0LFXP8TsaVrBdOLfnhryj8hvwNNEGtOFvJDrtinpPJfJY1pxNFcH4sID3Qt
     G1b2zTCABCXgkfwNt0WFcdxMITE=]
+
+profile::os::baseline::dns_resolver::name_server: [ '192.168.0.10', '192.168.0.7' ]
+profile::os::baseline::dns_resolver::search_path: 'platform9.puppet.net'
