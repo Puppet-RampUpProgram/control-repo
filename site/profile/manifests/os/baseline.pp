@@ -36,5 +36,5 @@ class profile::os::baseline (
   }
   # Profile does the OS case statement 
   # Profile will normalize the 'temp' path for Linux, Solaris, and Windows
-  include profile::os::baseline::archive
+  include profile::os::baseline::archives
 }
