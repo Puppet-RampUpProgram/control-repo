@@ -32,7 +32,18 @@ mod 'ipcrm-registry_acl',                '0.0.6'
 mod 'puppetlabs-powershell',             '2.3.0'
 mod 'puppet-windows_firewall',           '2.0.2'
 mod 'autostructure-ad_acl',              '1.0.0'
+
 mod 'shearn89-toughen',                  '1.0.0'
+mod 'puppetlabs-firewall',               '1.12.0'
+mod 'puppetlabs-limits',                 '0.1.0'
+mod 'thias-sysctl',                      '1.0.6'
+mod 'puppetlabs-ntp',                    '7.1.1'
+mod 'herculesteam-augeasproviders_core', '2.1.4'
+mod 'herculesteam-augeasproviders_grub', '3.0.1'
+mod 'kemra102-auditd',                   '2.2.0' 
+mod 'puppetlabs-concat',                 '4.2.1'
+mod 'puppet-selinux',                    '1.5.2'
+
 
 #mod 'tomcat',
 #  git: 'https://github.com/spidersddd/puppetlabs-tomcat'
