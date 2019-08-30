@@ -8,6 +8,9 @@ defaults:  # Used for any hierarchy level that omits these keys.
     pkcs7_public_key:  /etc/puppetlabs/puppet/eyaml/public_key.pkcs7.pem
 
 hierarchy:
+  - name: "Should be deleted data (this data is for testing purposes only)" # feel free to delete this layer
+    path: "to_be_deleted.yaml"
+
   - name: "Per-node trusted.certname data (can be encrypted)" # Using same file as unencrypted
     path: "nodes/%{trusted.certname}.yaml"
 
@@ -26,5 +29,3 @@ hierarchy:
   - name: "Common data (can be encrypted)" # Using same file as unencrypted
     path: "common.yaml"
 
-  - name: "Should be deleted data (this data is for testing purposes only)" # feel free to delete this layer
-    path: "to_be_deleted.yaml"
