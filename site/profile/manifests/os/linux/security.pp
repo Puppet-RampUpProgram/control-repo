@@ -4,12 +4,11 @@ class profile::os::linux::security {
   include toughen::banners
   include toughen::boot
   include toughen::cron
-  include toughen::filesystem
-  include toughen::legacy_services
-  include toughen::mandatory_access
-  include toughen::network
-  include toughen::pam
-  include toughen::perms_owners
-  include toughen::services
+  #include toughen::legacy_services
+  #include toughen::mandatory_access
+  #include toughen::network
+  #include toughen::pam
+  #include toughen::perms_owners
+  #include toughen::services
   include toughen::shadow
 }
