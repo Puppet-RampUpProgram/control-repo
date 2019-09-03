@@ -5,7 +5,7 @@ class profile::os::windows::security (
   Boolean $enable_rdesktop = false,
 ) {
   if $disable_ipv6 {
-    include profiles::os::windows::disable_ipv6
+    include profile::os::windows::disable_ipv6
   }
   if $enable_rdesktop {
     include profile::os::windows::enable_remote_desktop
