@@ -6,7 +6,7 @@ class profile::app::puppet::check_hiera_keys {
   $hiera_private_key_exists = inline_template("<% if File.exist?('${hiera_private_key}') -%>true<% end -%>")
 
   if $hiera_private_key_exists {
-    $warning_content = "**WARNING** ${hiera_private_key}\n \
+    $warning_content = "\n**WARNING** ${hiera_private_key}\n \
     file should be removed from the control repo!\n \
     Please generate new eyaml keys for your Puppet Master.\n \
     Any eyaml encrypted data should be re-encrypted with new keys.\n \
