@@ -10,5 +10,7 @@ class profile::os::windows::security (
   if $enable_rdesktop {
     include profile::os::windows::enable_remote_desktop
   }
-  contain secure_windows
+  if $facts['os']['release']['major'] != '2012 R2' {
+    contain secure_windows
+  }
 }
