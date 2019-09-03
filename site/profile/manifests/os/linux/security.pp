@@ -7,9 +7,9 @@ class profile::os::linux::security {
   include toughen::shadow
   include toughen::legacy_services
   include toughen::services
+  include toughen::pam
   #include toughen::auditing
   #include toughen::mandatory_access
   #include toughen::network
-  #include toughen::pam
 
 }
