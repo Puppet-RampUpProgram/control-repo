@@ -12,7 +12,7 @@ class profile::os::baseline::dns_resolver (
 ) {
 
   case $facts['kernel'] {
-    'Linux','Solaris': {
+    'Linux','SunOS': {
 
       # Use saz/resolv_conf Forge module
       class { 'resolv_conf':
