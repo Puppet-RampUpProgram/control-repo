@@ -7,7 +7,7 @@ class profile::os::baseline::archives (
 
   if ! $in_temp_path {
     case $facts['kernel'] {
-      'Linux', 'Solaris': {
+      'Linux', 'SunOS': {
         $temp_path = '/tmp'
       }
       'windows': {
