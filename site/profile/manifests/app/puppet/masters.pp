@@ -4,44 +4,31 @@ class profile::app::puppet::masters (
   Optional[String] $puppet_ca = undef,
   Boolean $debug_messages = false,
 ) {
-  include puppet_enterprise
+  if $facts['pe_server_version'] {
+    include puppet_enterprise
 
-  # This section will check repo provided keys in the demo/example
-  # control-repo and warn if they are still in use.
-  $hiera_private_key = '/etc/puppetlabs/code/environments/production/keys/private_key.pkcs7.pem'
-  $hiera_private_key_exists = inline_template("<% if File.exist?('${hiera_private_key}') -%>true<% end -%>")
-
-  # This will quiery the puppet_db to see what hosts are running as the Puppet CA.
-  $puppetdb_puppet_ca = 'resources[certname] { type = "Class" and title = "Puppet_enterprise::Profile::Certificate_authority" }'
-  $puppet_ca_nodes = puppetdb_query($puppetdb_puppet_ca).each |$value| { $value["certname"] }
-  # This will check if puppet_ca param was assigned and if not use $puppet_enterprise::certificate_authority_host
-  if $puppet_ca == undef {
-    $pe_ca = $puppet_enterprise::certificate_authority_host
-  } else {
-    $pe_ca = $puppet_ca
-  }
-
-  if $hiera_private_key_exists {
-    $warning_content = "${hiera_private_key} file should be removed from the control repo!\n \
-    Any eyaml encrypted data should be re-encrypted with new keys.  DO NOT PLACE PRIVATE KEY in control-repo!\n \
-    See https://github.com/voxpupuli/hiera-eyaml#generate-keys"
-
-    warning($warning_content)
-    notify { 'key error':
-      message => $warning_content,
+    # This will quiery the puppet_db to see what hosts are running as the Puppet CA.
+    $puppetdb_puppet_ca = 'resources[certname] { type = "Class" and title = "Puppet_enterprise::Profile::Certificate_authority" }'
+    $puppet_ca_nodes = puppetdb_query($puppetdb_puppet_ca).each |$value| { $value["certname"] }
+    # This will check if puppet_ca param was assigned and if not use $puppet_enterprise::certificate_authority_host
+    if $puppet_ca == undef {
+      $pe_ca = $puppet_enterprise::certificate_authority_host
+    } else {
+      $pe_ca = $puppet_ca
     }
-  }
 
-  # This code will include a class on compilers but not on the puppet_ca (Master of Masters)
-  if (! $trusted['certname'] in $puppet_ca_nodes) and (! $trusted['certname'] == $pe_ca) {
+    # This code will include a class on compilers but not on the puppet_ca (Master of Masters)
+    if (! $trusted['certname'] in $puppet_ca_nodes) and (! $trusted['certname'] == $pe_ca) {
       include profile::app::puppet::compiler
-  } else {
-    # This is a Master of Masters section to add classes to
-    if $debug_messages {
-      notify { 'Master message':
-        message => "${facts['fqdn']} is running the Puppet_enterprise::Profile::Certificate_authority class",
+    } else {
+      # This is a Master of Masters section to add classes to
+      if $debug_messages {
+        notify { 'Master message':
+          message => "${facts['fqdn']} is running the Puppet_enterprise::Profile::Certificate_authority class",
+        }
       }
     }
   }
+  include profile::app::puppet::check_hiera_keys
 
 }
