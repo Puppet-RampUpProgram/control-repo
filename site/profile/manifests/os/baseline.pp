@@ -9,7 +9,7 @@ class profile::os::baseline (
   # Profile to set a default base level of acceptable security and
   # configuration for systems to be used within the company networks.
   case $facts['os']['family'] {
-    'RedHat': {
+    'RedHat','Debian': {
       class { 'profile::os::baseline::dns_resolver':
         name_servers => $name_servers,
         search_path  => $search_path,
