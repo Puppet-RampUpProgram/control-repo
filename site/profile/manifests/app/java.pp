@@ -2,7 +2,7 @@
 # agent hosts.
 class profile::app::java {
   case $facts['os']['family'] {
-    'RedHat': {
+    'RedHat', 'Debian': {
       require java
     }
     'windows': {
