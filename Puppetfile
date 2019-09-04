@@ -33,6 +33,7 @@ mod 'autostructure-ad_acl',              '1.0.0'
 
 mod 'hardening-os_hardening',              '2.2.6'
 mod 'herculesteam-augeasproviders_sysctl', '2.3.1'
+mod 'herculesteam-augeasproviders_core',   '2.5.0'
 
 
 #mod 'tomcat',
