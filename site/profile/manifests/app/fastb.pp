@@ -7,23 +7,5 @@ class profile::app::fastb (
 
   $catalina_home = $profile::app::tomcat::webserver::tomcat_install_path
 
-  tomcat::instance { 'tomcat8-fastb':
-    catalina_home => $catalina_home,
-  }
-
-  tomcat::war { 'fastb.war':
-    war_source => $download_url,
-  }
-
-#  tomcat::instance { 'tomcat-second':
-#    catalina_home => '/opt/tomcat',
-#   catalina_base => '/opt/tomcat/second',
-#  }
-
-  # Change the default port of the second instance server and HTTP connector
-#  tomcat::config::server { 'tomcat-second':
-#    catalina_base => '/opt/tomcat/second',
-#    port          => '8006',
-#  }
 
 }
