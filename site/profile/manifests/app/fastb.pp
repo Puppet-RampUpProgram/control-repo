@@ -28,9 +28,8 @@ class profile::app::fastb (
 #  }
 
   tomcat::config::server::connector { 'tomcat-fastb-http':
-    catalina_base => "${catalina_home}/${app_dir}",
-    port          => '8081',
-    protocol      => 'HTTP/1.1',
+    port     => '8081',
+    protocol => 'HTTP/1.1',
 #    additional_attributes => {
 #      'redirectPort' => '8443'
 #    },
