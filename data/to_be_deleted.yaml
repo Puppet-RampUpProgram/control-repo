@@ -179,3 +179,11 @@ profile::app::puppet::compiler::ssh_public_key_content: >
 
 profile::os::baseline::name_servers: [ '192.168.0.10', '192.168.0.7' ]
 profile::os::baseline::search_path: [ 'platform9.puppet.net' ]
+
+profile::os::baseline::banner::motd: '-------------
+W A R N I N G
+-------------
+
+Authorized users only. All activity may be monitored and logged. Use of
+this system means you consent to such monitoring. Unauthorized users may
+be prosecuted.'
