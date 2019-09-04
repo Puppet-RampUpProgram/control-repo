@@ -14,6 +14,6 @@ class profile::app::fastb (
     war_source => $download_url,
     user       => $user,
     group      => $group,
-    notify     => Service[$service],
+    notify     => Tomcat::Service[$service],
   }
 }
