@@ -1,6 +1,6 @@
 # This is a example profile to deploy fastb application software.
 class profile::app::fastb (
-  Stdlib::HTTPSUrl $download_url = 'https://tomcat.apache.org/tomcat-9.0-doc/appdev/sample/sample.war',
+  Stdlib::HTTPSUrl $download_url = 'https://storage.googleapis.com/google-code-archive-downloads/v2/code.google.com/sureshatt/http-demo.war',
   String $app_dir = 'fastb',
 ) {
   include profile::app::tomcat::webserver
@@ -12,7 +12,7 @@ class profile::app::fastb (
     catalina_base => "${catalina_home}/${app_dir}",
   }
 
-  tomcat::war { "${catalina_home}/${app_dir}/fastb_app.war":
+  tomcat::war { "${catalina_home}/${app_dir}/fastb.war":
     catalina_base => "${catalina_home}/${app_dir}",
     war_source    => $download_url,
   }
