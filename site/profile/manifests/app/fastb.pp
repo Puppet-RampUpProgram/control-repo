@@ -8,14 +8,12 @@ class profile::app::fastb (
   $catalina_home = $profile::app::tomcat::webserver::tomcat_install_path
 
   tomcat::instance { 'tomcat8-fastb':
-    catalina_home => $catalina_home,
-    catalina_base => "${catalina_home}/${app_dir}",
+    catalina_home => "${catalina_home}/${app_dir}",
   }
 
-  tomcat::war { "${catalina_home}/${app_dir}/fastb.war":
-    catalina_base => "${catalina_home}/${app_dir}",
-    app_base      => "${catalina_home}/${app_dir}/webapps",
-    war_source    => $download_url,
+  tomcat::war { 'fastb.war':
+    app_base   => "${catalina_home}/${app_dir}/webapps",
+    war_source => $download_url,
   }
 
 #  tomcat::instance { 'tomcat-second':
