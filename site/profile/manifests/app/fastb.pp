@@ -14,6 +14,7 @@ class profile::app::fastb (
 
   tomcat::war { "${catalina_home}/${app_dir}/fastb.war":
     catalina_base => "${catalina_home}/${app_dir}",
+    app_base      => "${catalina_home}/${app_dir}/webapps",
     war_source    => $download_url,
   }
 
