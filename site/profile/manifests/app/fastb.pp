@@ -1,7 +1,7 @@
 # This is a example profile to deploy fastb application software.
 class profile::app::fastb (
   Stdlib::HTTPSUrl $download_url = 'https://tomcat.apache.org/tomcat-9.0-doc/appdev/sample/sample.war',
-  Stdlib::Absolutepath $app_path = 'fastb',
+  String $app_dir = 'fastb',
 ) {
   include profile::app::tomcat::webserver
 
@@ -9,11 +9,11 @@ class profile::app::fastb (
 
   tomcat::instance { 'tomcat8-fastb':
     catalina_home => $catalina_home,
-    catalina_base => "${catalina_home}/${app_path}",
+    catalina_base => "${catalina_home}/${app_dir}",
   }
 
-  tomcat::war { "${catalina_home}/${app_path}/fastb_app.war":
-    catalina_base => "${catalina_home}/${app_path}",
+  tomcat::war { "${catalina_home}/${app_dir}/fastb_app.war":
+    catalina_base => "${catalina_home}/${app_dir}",
     war_source    => $download_url,
   }
 
@@ -29,7 +29,7 @@ class profile::app::fastb (
 #  }
 
   tomcat::config::server::connector { 'tomcat-fastb-http':
-    catalina_base => "${catalina_home}/${app_path}",
+    catalina_base => "${catalina_home}/${app_dir}",
     port          => '8081',
     protocol      => 'HTTP/1.1',
 #    additional_attributes => {
