@@ -11,7 +11,7 @@ mod 'puppet-hiera',                      '3.3.4'
 mod 'saz-ssh',                           '4.0.0'
 mod 'saz-resolv_conf',                   '3.3.0'
 mod 'icinga-icinga2',                    '1.3.7'
-mod 'puppetlabs-concat',                 '6.1.0'
+mod 'puppetlabs-concat',                 '4.2.1'
 
 mod 'puppetlabs-dsc',                    '1.7.0'
 mod 'puppetlabs-reboot',                 '2.0.0'
