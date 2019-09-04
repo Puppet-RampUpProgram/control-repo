@@ -26,6 +26,5 @@ class profile::app::fastb (
 #    catalina_base => '/opt/tomcat/second',
 #    port          => '8006',
 #  }
-  }
 
 }
