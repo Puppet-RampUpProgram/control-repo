@@ -15,11 +15,13 @@ These examples have been constructed with the following requirements:
 | Win 2012r2 | `role::spider::web_be` | WIP |
 | Win 2012r2 | `role::spider::database` | WIP |
 | CentOS 7  | `role::spider::balancer` | WIP |
+| Ubuntu 16.04 | role::fastb::web_be | Complete |
 
 
   - Modeling should support three operating systems
     - Windows 2012R2
     - CentOS (6,7)
+    - Ubuntu 16.04
     - Solaris 11.2
   - Two products should be represented
     - Spider
