@@ -37,7 +37,9 @@ mod 'hardening-os_hardening',              '2.2.6'
 mod 'herculesteam-augeasproviders_sysctl', '2.3.1'
 mod 'herculesteam-augeasproviders_core',   '2.5.0'
 
-
+#This is for fastb_database
+mod 'puppetlabs-translate',               '2.0.0'
+mod 'puppetlabs-mysql',                   '10.1.0'
 
 #mod 'tomcat',
 #  git: 'https://github.com/spidersddd/puppetlabs-tomcat'
