@@ -9,8 +9,8 @@ class profile::app::mysql::server (
 ) {
   #This will do a lookup to create one large hash from the hiera data
   $lookup_settings = lookup( { 'name' => 'profile::app::mysql::server::settings',
-                                merge => {
-                                  'stratagy' => 'deep',
+                                'merge' => {
+                                  'strategy' => 'deep',
                                   'knockout_prefix' => '--',
                                 },
   } )
