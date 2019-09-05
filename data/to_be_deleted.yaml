@@ -184,6 +184,6 @@ profile::os::baseline::banner::motd: '-------------
 W A R N I N G
 -------------
 
-Authorized users only. All activity may be monitored and logged. Use of
-this system means you consent to such monitoring. Unauthorized users may
+Authorized users only. All activity may be monitored and logged. Use of \n
+this system means you consent to such monitoring. Unauthorized users may \n
 be prosecuted.'
