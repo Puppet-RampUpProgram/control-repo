@@ -37,5 +37,10 @@ class profile::os::baseline (
   # Profile does the OS case statement 
   # Profile will normalize the 'temp' path for Linux, Solaris, and Windows
   include profile::os::baseline::archives
+  # Profile does motd and banner
   include profile::os::baseline::banner
+  # Profile validates trusted.extensions are set
+  class { 'profile::os::baseline::verify_trusted_data':
+    extensions_to_check => [ 'pp_role', 'pp_product', 'pp_service' ],
+  }
 }
