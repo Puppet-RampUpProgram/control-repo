@@ -18,9 +18,9 @@ class profile::os::baseline::verify_trusted_data (
 ) {
   if $extensions_to_check != undef {
     $extensions_to_check.each | $key | {
-      $extension_name = "trusted.extensions.${key}"
-      if "${$extension_name}" == undef { # lint:ignore:only_variable_string
-        fail("Required ${extension_name} does not exists!\nExtension must be set!")
+      $extension_value = $trusted['extensions'][$key]
+      if $extension_value == undef {
+        fail("Required trusted.extensions.${key} does not exists!\nExtension must be set!")
       }
     }
   }
