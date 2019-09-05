@@ -15,10 +15,10 @@ hierarchy:
     path: "nodes/%{trusted.certname}.yaml"
 
   - name: "Per-datacenter buiness trusted.extentions.pp_role data (can be encrypted)" # Using same file as unencrypted
-    path: "datacenter/%{facts.datacenter}/%{trusted.extentions.pp_role}.yaml"
+    path: "datacenter/%{facts.datacenter}/%{trusted.extensions.pp_role}.yaml"
 
   - name: "Role trusted.extentions.pp_role data (can be encrypted)" # Using same file as unencrypted
-    path: "role/%{trusted.extentions.pp_role}.yaml"
+    path: "role/%{trusted.extensions.pp_role}.yaml"
 
   - name: "Per-OS facts.os.family defaults data (can be encrypted)" # Using same file as unencrypted
     path: "os/%{facts.os.family}.yaml"
