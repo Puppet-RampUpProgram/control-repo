@@ -23,7 +23,7 @@ class profile::app::mysql::server (
                                   'knockout_prefix' => '--',
                                 },
   } )
-  assert_type(Hash[Hash, Any], $lookup_mysql_users)
+  assert_type(String[Hash, Any], $lookup_mysql_users)
 
   # This will ensure the root_password is of Sensitive datatype to protect the 
   # root_password from showing up in the logs.  
