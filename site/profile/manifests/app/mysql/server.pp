@@ -16,10 +16,15 @@ class profile::app::mysql::server (
   } )
   assert_type(Hash[String, Any], $lookup_settings)
 
-  $secure_root_pass = $root_password ? {
-    Sensitive[String] => $root_password,
-    default           => Sensitive($root_password)
-  }
+  # This will ensure the root_password is of Sensitive datatype to protect the 
+  # root_password from showing up in the logs.  
+  # Currently mysql::server expects String not Sensitive[String] that is why
+  # this is commented out.
+  #$secure_root_pass = $root_password ? {
+  #  Sensitive[String] => $root_password,
+  #  default           => Sensitive($root_password)
+  #}
+  $secure_root_pass = $root_password
 
   class {  'mysql::server':
     root_password => $secure_root_pass,
