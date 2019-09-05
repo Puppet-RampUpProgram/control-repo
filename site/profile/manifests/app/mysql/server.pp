@@ -3,7 +3,7 @@
 class profile::app::mysql::server (
   # root_password is set in hiera data based on role and env_n_role
   #  Please delete files in "<control-repo/data/**/*.yaml"
-  Sensitive[String] $root_password,
+  Variant[String, Sensitive[String]] $root_password,
   Array[String] $mysql_bindings = [ 'php' ],
   Hash[String, Hash[String, Any]] $dbs = {},
 ) {
@@ -16,8 +16,13 @@ class profile::app::mysql::server (
   } )
   assert_type(Hash[String, Any], $lookup_settings)
 
+  $secure_root_pass = $root_password ? {
+    Sensitive[String] => $root_password,
+    default           => Sensitive($root_password)
+  }
+
   class {  'mysql::server':
-    root_password => $root_password,
+    root_password => $secure_root_pass,
       *           => $lookup_settings,
   }
 
