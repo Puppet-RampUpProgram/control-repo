@@ -292,6 +292,7 @@
     "puppet_vardir": "/opt/puppetlabs/puppet/cache",
     "puppetversion": "4.2.1",
     "root_home": "/root",
+    "retrieve_system_users": "root,bin,daemon,adm,lp,sync,shutdown,halt,mail,operator,games,ftp,nobody,systemd-network,dbus,polkitd,rpc,rpcuser,sshd,postfix,chrony",
     "ruby": {
       "platform": "x86_64-linux",
       "sitedir": "/opt/puppetlabs/puppet/lib/ruby/site_ruby/2.1.0",
@@ -333,7 +334,6 @@
       "seconds": 352,
       "uptime": "0:05 hours"
     },
-    "system_users": "sshd",
     "timezone": "UTC",
     "uptime": "0:05 hours",
     "uptime_days": 0,
