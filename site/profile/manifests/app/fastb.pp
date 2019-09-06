@@ -16,4 +16,8 @@ class profile::app::fastb (
     group      => $group,
   }
 
+  @@mysql_user { "fastb_db_user@${facts['fqdn']}":
+    ensure        => present,
+    password_hash => mysql_password(lookup("profile::app::fastb::fastb_db_password::${trusted['extensions']['pp_preshared_key']}")),
+  }
 }

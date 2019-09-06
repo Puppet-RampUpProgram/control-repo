@@ -17,13 +17,9 @@ class profile::app::mysql::server (
   } )
   assert_type(Hash[String, Any], $lookup_settings)
 
-  $lookup_mysql_users = lookup( { 'name' => 'profile::app::mysql::server::mysql_users',
-                                'merge' => {
-                                  'strategy' => 'deep',
-                                  'knockout_prefix' => '--',
-                                },
-  } )
-  assert_type(Hash, $lookup_mysql_users)
+  $tag_for_exported_mysql_users = $trusted['extensions']['pp_preshared_key']
+
+  assert_type(String, $tag_for_exported_mysql_users)
 
   # This will ensure the root_password is of Sensitive datatype to protect the 
   # root_password from showing up in the logs.  
@@ -45,13 +41,7 @@ class profile::app::mysql::server (
     contain "mysql::bindings::${binding}"
   }
 
-  $lookup_mysql_users.each |String $username, Hash $user_opts| {
-    $password_hash = mysql_password(lookup("profile::app::mysql::server::${username}::password"))
-    mysql_user { $username:
-      password_hash => $password_hash,
-      *             => $user_opts,
-    }
-  }
+  Mysql_user <<| tag == $tag_for_exported_mysql_users |>>
 
   $dbs.each |$dbname, $opts| {
     mysql::db { $dbname:
