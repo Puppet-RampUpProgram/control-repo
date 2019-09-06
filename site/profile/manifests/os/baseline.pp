@@ -40,7 +40,8 @@ class profile::os::baseline (
   # Profile does motd and banner
   include profile::os::baseline::banner
   # Profile validates trusted.extensions are set
+  $extensions = lookup('profile::os::baseline::verify_trusted_data::extentions', Array,  'deep')
   class { 'profile::os::baseline::verify_trusted_data':
-    extensions_to_check => [ 'pp_role', 'pp_product', 'pp_service' ],
+    extensions_to_check => $extensions,
   }
 }

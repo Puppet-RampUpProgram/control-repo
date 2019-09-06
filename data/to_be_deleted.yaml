@@ -186,7 +186,14 @@ W A R N I N G \n
 \n
 Authorized users only. All activity may be monitored and logged. Use of \n
 this system means you consent to such monitoring. Unauthorized users may \n
-be prosecuted."
+be prosecuted.\n"
 
 profile::app::mysql::server::settings:
     remove_default_accounts: true
+
+profile::app::haproxy::server::stats_password: ENC[PKCS7,MIIBeQYJKoZIhvcNAQcDoIIBajCCAWYCAQAxggEhMIIBHQIBADAFMAACAQEwDQYJKoZIhvcNAQEBBQAEggEA2/B9diMes+/bwkA3XX4ezcWkYMRaaJxCnTeHAi6TcH9/GIfdbzWubGwsHKr3gS07UsYIKzXeJaK5TExxMalXZenx8x4EJ113MOs7vNQ1O6wytS944FOw2Cjd4LunuaeoGRw3biRora/eUxG5gqQR4ZPJUDk3FakX2pOFqaruvvcKHvo3+MHvcE5Mbf3WkM5sOHVsWVhLOO4p3aj5cHKPvxuqE5RsnOHhopLaIln3Hgr0nVEetOw24dwFSBOwsdz4yKxrp1skMH1BJWNVwh5EnuMTKyB+/rT7EDG8j50pT92PnLy7Xox+XXSvzFsMa1NIPFuFqcrIuOqkDU5ckupSADA8BgkqhkiG9w0BBwEwHQYJYIZIAWUDBAEqBBAAC7PxGEQGuhQ9aQ3XHO5tgBBLH9b+677eakHW3nOvvN4h]
+
+profile::os::baseline::verify_trusted_data::extentions: 
+    - 'pp_role'
+    - 'pp_service'
+    - 'pp_product'
