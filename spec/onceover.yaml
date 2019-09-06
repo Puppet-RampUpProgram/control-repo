@@ -55,3 +55,7 @@ test_matrix:
         - 'linux'
         - 'solaris'
       tests: 'acceptance'
+
+opts:
+  :facts_dirs:
+    - spec/factsets

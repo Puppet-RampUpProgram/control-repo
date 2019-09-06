@@ -1,5 +1,11 @@
 {
   "name": "win-e5k8tm30719",
+  "trusted": {
+    "pp_role": "agent",
+    "pp_service": "puppet",
+    "pp_product": "puppet",
+    "pp_preshared_key": "Somekey"
+  },
   "values": {
     "agent_specified_environment": "production",
     "architecture": "x64",

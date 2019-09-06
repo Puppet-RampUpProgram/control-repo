@@ -1,5 +1,11 @@
 {
   "name": "something-c02nfmkgg3qh",
+  "trusted": {
+    "pp_role": "agent",
+    "pp_service": "puppet",
+    "pp_product": "puppet",
+    "pp_preshared_key": "Somekey"
+  },
   "values": {
     "puppetversion": "6.0.4",
     "agent_specified_environment": "production",
