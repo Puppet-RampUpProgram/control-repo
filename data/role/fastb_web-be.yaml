@@ -1,0 +1,4 @@
+---
+
+profile::os::baseline::verify_trusted_data::extentions: 
+    - 'pp_preshared_key'
