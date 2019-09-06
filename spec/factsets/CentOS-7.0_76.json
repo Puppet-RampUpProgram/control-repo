@@ -58,7 +58,6 @@
           "ebs0": "/dev/vda",
           "root": "/dev/vda"
         },
-        "home_users": "/home/centos",
         "hostname": "centos7",
         "instance-action": "none",
         "instance-id": "i-000085b6",
@@ -495,6 +494,7 @@
         "seconds": 6872,
         "uptime": "1:54 hours"
       },
+      "system_users": "sshd",
       "timezone": "UTC",
       "uptime": "1:54 hours",
       "uptime_days": 0,
