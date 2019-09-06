@@ -43,7 +43,7 @@ class profile::app::mysql::server (
 
   Mysql_user <<| tag == $tag_for_exported_mysql_users |>>
 
-  $dbs.each |String $dbname, $opts| {
+  $dbs.each |$dbname, $opts| {
     mysql::db { $dbname:
       * => $opts,
     }
