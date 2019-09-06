@@ -18,6 +18,8 @@ class profile::app::tomcat::webserver (
 
     tomcat::install { $tomcat_install_path:
       source_url => $download_url,
+      user       => $user,
+      group      => $group,
     }
 
     tomcat::service { $service:
