@@ -15,7 +15,6 @@ class profile::app::fastb (
     user       => $user,
     group      => $group,
     notify     => Tomcat::Service[$service],
-    require    => Class['profile::app::tomcat::webserver'],
   }
 
 }
