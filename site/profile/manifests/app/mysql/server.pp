@@ -6,7 +6,7 @@ class profile::app::mysql::server (
   #Variant[String, Sensitive[String]] $root_password,
   String $root_password,
   Array[String] $mysql_bindings = [ 'php' ],
-  Hash[String, Hash[String, Any]] $dbs = {},
+  Hash $dbs = {},
 ) {
   #This will do a lookup to create one large hash from the hiera data
   $lookup_settings = lookup( { 'name' => 'profile::app::mysql::server::settings',
