@@ -69,6 +69,7 @@
     "hardwareisa": "x86_64",
     "hardwaremodel": "x86_64",
     "homedir": "/root",
+    "home_users": "/home/centos",
     "hostname": "centos6a",
     "id": "root",
     "identity": {

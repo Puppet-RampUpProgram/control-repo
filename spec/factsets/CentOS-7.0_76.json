@@ -58,6 +58,7 @@
           "ebs0": "/dev/vda",
           "root": "/dev/vda"
         },
+        "home_users": "/home/centos",
         "hostname": "centos7",
         "instance-action": "none",
         "instance-id": "i-000085b6",
