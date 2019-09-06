@@ -5,6 +5,9 @@ defaults:  # Used for any hierarchy level that omits these keys.
   data_hash: yaml_data  # Use the built-in YAML backend.
 
 hierarchy:
+  - name: "Should be deleted data (this data is for testing purposes only)" # feel free to delete this layer
+    path: "to_be_deleted.yaml"
+
   - name: "Per-node data"                   # Human-readable name.
     path: "nodes/%{trusted.certname}.yaml"  # File path, relative to datadir.
                                    # ^^^ IMPORTANT: include the file extension!
