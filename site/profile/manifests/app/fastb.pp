@@ -5,9 +5,9 @@ class profile::app::fastb (
 ) {
   require profile::app::tomcat::webserver
 
-  $user           = $profile::app::tomcat::webserver::user
-  $group          = $profile::app::tomcat::webserver::group
-  $service        = $profile::app::tomcat::webserver::service
+  $user          = $profile::app::tomcat::webserver::user
+  $group         = $profile::app::tomcat::webserver::group
+  $service       = $profile::app::tomcat::webserver::service
   $catalina_home = $profile::app::tomcat::webserver::tomcat_install_path
 
   tomcat::war { 'http-demo.war':
@@ -15,7 +15,6 @@ class profile::app::fastb (
     user       => $user,
     group      => $group,
     notify     => Tomcat::Service[$service],
-    require    => Class['Profile::App::Tomcat::Webserver'],
   }
 
 }
