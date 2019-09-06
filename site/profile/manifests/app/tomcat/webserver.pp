@@ -28,4 +28,5 @@ class profile::app::tomcat::webserver (
   } else {
     fail("download_url not set for ${title}.")
   }
+  contain tomcat
 }
