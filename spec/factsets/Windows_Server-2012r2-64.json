@@ -4,7 +4,7 @@
     "pp_role": "agent",
     "pp_service": "puppet",
     "pp_product": "puppet",
-    "pp_preshared_key": "Somekey"
+    "pp_preshared_key": "somekey"
   },
   "values": {
     "agent_specified_environment": "production",
