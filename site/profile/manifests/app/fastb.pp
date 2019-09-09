@@ -16,8 +16,8 @@ class profile::app::fastb (
     group      => $group,
   }
 
-  $mysql_passwd = lookup( 'name' => "profile::app::fastb::fastb_db_password::${trusted['extensions']['pp_preshared_key']}",
-      { 'merge'                          => {
+  $mysql_passwd = lookup( { 'name' => "profile::app::fastb::fastb_db_password::${trusted['extensions']['pp_preshared_key']}",
+        'merge'                          => {
         'strategy'                     => 'unique',
         'default_value'                => 'somesillystringfortestdata' }, })
 
