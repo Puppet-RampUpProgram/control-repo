@@ -198,7 +198,4 @@ profile::os::baseline::verify_trusted_data::extentions:
     - 'pp_service'
     - 'pp_product'
 
-# This is test data for onceover
-profile::app::fastb::fastb_db_password::somekey: 'somesillystringfordata'
-
 profile::app::fastb::fastb_db_password::iETraGpZcnRcPiuZGPCytoq3eWkwaWC6vqzudJkvPmu2: ENC[PKCS7,MIIBeQYJKoZIhvcNAQcDoIIBajCCAWYCAQAxggEhMIIBHQIBADAFMAACAQEwDQYJKoZIhvcNAQEBBQAEggEAHPuFhkR38VKbQ76hhp5wWkjuD90sOMXSnw8bbQjU29abIChXtSTll1MZv1iWr2d5BHX1a/E/8cmJxZpc+GXjiV0YXnMHODAOCc+I4QWYmBBKUsUC9N2x6kIYoTAOupOWMnsCOxgyWea9+aWaNsuchg+cRmgQqgo9Ry3nuiEbdD7YHpywRElG4CbTUAMOEJEHexxW54B4svzUFklTNDFRsyura3qkyZLQzf/3rB8WrMKKrbM5vcNg0p0Y8LLp9KYRR13jBmsQ1FawhbS3BIz2f6mHjQrW/DnFxRCi+9fNd8yMHmWM2tAcXyjMdHs3dau41t+9APKuqOWjG3KlV3lGXzA8BgkqhkiG9w0BBwEwHQYJYIZIAWUDBAEqBBAZ3nrbPxeAmXguU6LfmXzbgBDo/PVHoLJxFfpwp+VMjXId]
