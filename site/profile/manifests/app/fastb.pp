@@ -16,8 +16,14 @@ class profile::app::fastb (
     group      => $group,
   }
 
+  $mysql_passwd = lookup( 'name' => "profile::app::fastb::fastb_db_password::${trusted['extensions']['pp_preshared_key']}",
+      { 'merge'                          => {
+        'strategy'                     => 'unique',
+        'default_value'                => 'somesillystringfortestdata' }, })
+
+
   @@mysql_user { "fastb_db_user@${facts['fqdn']}":
     ensure        => present,
-    password_hash => mysql_password(lookup("profile::app::fastb::fastb_db_password::${trusted['extensions']['pp_preshared_key']}")),
+    password_hash => mysql_password($mysql_passwd)
   }
 }
