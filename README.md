@@ -14,7 +14,8 @@ Table of contents
     * [Get the control\-repo deployed on your master](#get-the-control-repo-deployed-on-your-master)
   * [Setup a webhook in your Git server](#setup-a-webhook-in-your-git-server)
     * [Gitlab](#gitlab-1)
-  * [Test Code Manager](#test-code-manager)
+  * [Test and Troubleshoot Code Manager](#test-and-troubleshoot-code-manager)
+  * [Example Roles and Profiles primer](#example-roles-and-profiles-primer)
 
 # Join the #ramp-up channel on Puppet Community Slack
 
@@ -22,7 +23,7 @@ Our [Puppet Community Slack](http://slack.puppet.com) is a great way to interact
 
 # Before starting
 
-This control-repo and the steps below are intended to be used with a new installation of PE.
+This control-repo and the steps below are intended to be used with a new installation of PE as well as example of a working control-repo architecture.
 
 **Warning:** When using an existing PE installation any existing code or modules in `/etc/puppetlabs/code` will be copied to a backup directory `/etc/puppetlabs/code_bak_<timestamp>` in order to allow deploying code from Code Manager.
 
@@ -32,9 +33,8 @@ When you finish the instructions below, you will have the beginning of a best pr
 
  - A Git server
  - The ability to push code to your Git server and have it automatically deployed to your PE master
- - A config_version script that outputs the most recent SHA of your code each time you run `puppet agent -t`
+ - A config\_version script that outputs the most recent SHA of your code each time you run `puppet agent -t`
  - Optimal tuning of PE settings for this configuration
- - Working and example [roles and profiles](https://docs.puppet.com/pe/latest/puppet_assign_configurations.html#assigning-configuration-data-with-role-and-profile-modules) code
 
 # How to set it all up
 
@@ -48,34 +48,34 @@ When you finish the instructions below, you will have the beginning of a best pr
 2. After GitLab is installed, sign into the web UI with the user `root`.
  - The first time you visit the UI it will force you to enter a password for the `root` user.
 
-2. In the GitLab UI, create a group called `puppet`.
+3. In the GitLab UI, create a group called `puppet`.
  - http://doc.gitlab.com/ce/workflow/groups.html
 
-3. In the GitLab UI, make yourself a user to edit and push code.
+4. In the GitLab UI, make yourself a user to edit and push code.
 
-4. From your laptop or development machine, make an SSH key and link it with your GitLab user.
+5. From your laptop or development machine, make an SSH key and link it with your GitLab user.
  - Note: The SSH key allows your laptop to communicate with the GitLab server and push code.
  - https://help.github.com/articles/generating-ssh-keys/
  - http://doc.gitlab.com/ce/ssh/README.html
 
-7. In the GitLab UI, add your user to the `puppet` group.
+6. In the GitLab UI, add your user to the `puppet` group.
  - You must give your user at least master permissions to complete the following steps.
  - Read more about permissions:
     - https://gitlab.com/gitlab-org/gitlab-ce/blob/master/doc/permissions/permissions.md
 
-8. In the GitLab UI, create a project called `control-repo` and set its Namespace to the `puppet` group.
+7. In the GitLab UI, create a project called `control-repo` and set its Namespace to the `puppet` group.
 
-10. On your laptop, clone this PuppetLabs-RampUpProgram control repo.
+8. On your laptop, clone this PuppetLabs-RampUpProgram control repo.
  - `git clone https://github.com/PuppetLabs-RampUpProgram/control-repo.git`
  - `cd control-repo`
 
-14. On your laptop, remove the origin remote.
+9. On your laptop, remove the origin remote.
  - `git remote remove origin`
 
-15. On your laptop, add your GitLab repo as the origin remote.
+10. On your laptop, add your GitLab repo as the origin remote.
  - `git remote add origin <SSH URL of your GitLab repo>`
 
-16. On your laptop, push the production branch of the repo from your machine up to your Git server.
+11. On your laptop, push the production branch of the repo from your machine up to your Git server.
  - `git push origin production`
 
 ### Stash
@@ -121,9 +121,10 @@ We will set up a deploy key in the Git server that will allow an SSH key we make
  - Paste in the public key from above
 3. Login to the PE console
 4. Navigate to the **Nodes > Classification** page
+ - Click on the **PE Infrastructure** group
  - Click on the **PE Master** group
- - Click the **Classes** tab
- - Add the `puppet_enterprise::profile::master`
+ - Click the **Configuration** tab
+ - In the `puppet_enterprise::profile::master` class parameters
     - Set the `r10k_remote` to the SSH URL from the front page of your GitLab repo
     - Set the `r10k_private_key` parameter to `/etc/puppetlabs/puppetserver/ssh/id-control_repo.rsa`
  - **Commit** your changes
@@ -132,33 +133,12 @@ We will set up a deploy key in the Git server that will allow an SSH key we make
 
     ~~~
     puppet agent -t
-    r10k deploy environment -pv
+    puppet access login <PE console login user> -l <lenth to retain token>
+    puppet code  deploy production --wait
     puppet agent -t
     ~~~
 
-5. Navigate back to the **Nodes > Classification** page
- - Near the top of the page select "add a group"
- - Type `role::all_in_one_pe` for the group name
-    - Click the **Add Group** button
- - Click the **add membership rules, classes and variables** link that appears
-    - Below **Pin specific nodes to the group** type your master's FQDN into the box
-       - Click **pin node**
- - Select the **Classes** tab
-    - On the right hand side, click the **Refresh** link
-       - Wait for this to complete
-    - In the **add new classes** box type `role::all_in_one_pe`
-       - Click **add class**
- - **Commit** your changes
-8. On your Puppet master
- - Run:
-
-    ~~~
-    puppet agent -t
-    echo 'code_manager_mv_old_code=true' > /opt/puppetlabs/facter/facts.d/code_manager_mv_old_code.txt
-    puppet agent -t
-    ~~~
-
-9. Code Manager is configured and has been used to deploy your code
+6. Code Manager is configured and has been used to deploy your code
 
 ## Setup a webhook in your Git server
 
@@ -178,7 +158,7 @@ Independent of which Git server you choose you will grab the webhook URL from yo
  - Since Code Manager uses a self-signed cert from the Puppet CA it is not generally trusted
 3. After you created the webhook use "test webhook" or similar functionality to confirm it works
 
-## Test Code Manager
+## Test and Troubleshoot Code Manager
 
 One of the components setup by this control-repo is that when you "push" code to your Git server, the git server will inform the Puppet master to deploy the branch you just pushed.
 
@@ -195,5 +175,16 @@ One of the components setup by this control-repo is that when you "push" code to
 
 3. Allow the push to complete and then wait a few seconds for everything to sync over.
  - On your Puppet Master, `ls -l /etc/puppetlabs/code/environments/production`.
-    - Confirm test_file is present
+    - Confirm test\_file is present
 4. In your first terminal window review the `puppetserver.log` to see the type of logging each sync will create.
+
+## Example Roles and Profiles primer
+
+The Roles and Profiles in this repo are usable examples.  Some of the code has been commented out to protect the inocent but the examples sound.  Please review the following README's for a more detailed description of the examples.
+
+  * The role and profile patern (method for naming and suggestions for hierachy) are only examples and suggestions.
+  * Some of the Windows profiles may not totally work due to depencies.
+    * Software download locations
+    * Method for package install ie (chocolatey, or wmi, etc.) are not specified.
+  
+  **Please see [Role and Profile examples](./site/README.md)**

@@ -1,0 +1,19 @@
+---
+
+profile::app::mysql::server::mysql_users:
+  fastb_db_user@localhost:
+    ensure: present
+      
+profile::app::mysql::server::fastb_db_user@localhost::password: ENC[PKCS7,MIIBeQYJKoZIhvcNAQcDoIIBajCCAWYCAQAxggEhMIIBHQIBADAFMAACAQEwDQYJKoZIhvcNAQEBBQAEggEAW555w9viO6soOOVHngrMRv2P+hNn4jBgn4hmXHF0/nvOIvzT7eIwCb+7sdbYbc3BWeEYkHvD+qyj1YUdt3akuAgeYMHdYdajsqU27QOTdERA+Vto2A21gIVyLlRG6x3+fGQAExpzCUiSWE4CEmVawOFCuMibl8FIs337jZrZ5JoEXrLuGXW9lG4EHoMfrNlKzAxQCwDoudhrKcJHtGp3xXJFJ5RV311SlduZeyC/VoYI+eIyxx15C8cvTV08D6dkM9wv1fnkjnqS2Fj5OoKP+fnIoHHxhou/ulMKNBQgH/6I/GpiFZshK8i/y7hptT0qd3n8UVCcfPU0lHdURD4RrzA8BgkqhkiG9w0BBwEwHQYJYIZIAWUDBAEqBBAAVeef6a4h7jMgdhdbQbRagBARC9r7oclAgaT/NHx+raTM]
+
+profile::app::mysql::server::dbs:
+  'fastb_db':
+    user: 'fastb_db_user'
+    host: 'localhost'
+    grant:
+      - 'SELECT'
+      - 'UPDATE'
+    password: ENC[PKCS7,MIIBeQYJKoZIhvcNAQcDoIIBajCCAWYCAQAxggEhMIIBHQIBADAFMAACAQEwDQYJKoZIhvcNAQEBBQAEggEAW555w9viO6soOOVHngrMRv2P+hNn4jBgn4hmXHF0/nvOIvzT7eIwCb+7sdbYbc3BWeEYkHvD+qyj1YUdt3akuAgeYMHdYdajsqU27QOTdERA+Vto2A21gIVyLlRG6x3+fGQAExpzCUiSWE4CEmVawOFCuMibl8FIs337jZrZ5JoEXrLuGXW9lG4EHoMfrNlKzAxQCwDoudhrKcJHtGp3xXJFJ5RV311SlduZeyC/VoYI+eIyxx15C8cvTV08D6dkM9wv1fnkjnqS2Fj5OoKP+fnIoHHxhou/ulMKNBQgH/6I/GpiFZshK8i/y7hptT0qd3n8UVCcfPU0lHdURD4RrzA8BgkqhkiG9w0BBwEwHQYJYIZIAWUDBAEqBBAAVeef6a4h7jMgdhdbQbRagBARC9r7oclAgaT/NHx+raTM]
+
+profile::os::baseline::verify_trusted_data::extentions: 
+  - 'pp_preshared_key'

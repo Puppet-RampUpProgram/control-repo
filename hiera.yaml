@@ -1,0 +1,31 @@
+---
+version: 5
+defaults:  # Used for any hierarchy level that omits these keys.
+  datadir: data         # This path is relative to hiera.yaml's directory.
+  lookup_key: eyaml_lookup_key   # Uses non-default backend.
+  options:
+    pkcs7_private_key: /etc/puppetlabs/puppet/eyaml/private_key.pkcs7.pem
+    pkcs7_public_key:  /etc/puppetlabs/puppet/eyaml/public_key.pkcs7.pem
+
+hierarchy:
+  - name: "Should be deleted data (this data is for testing purposes only)" # feel free to delete this layer
+    path: "to_be_deleted.yaml"
+
+  - name: "Per-node trusted.certname data (can be encrypted)" # Using same file as unencrypted
+    path: "nodes/%{trusted.certname}.yaml"
+
+  - name: "Per-datacenter buiness trusted.extentions.pp_role data (can be encrypted)" # Using same file as unencrypted
+    path: "datacenter/%{facts.datacenter}/%{trusted.extensions.pp_role}.yaml"
+
+  - name: "Role trusted.extentions.pp_role data (can be encrypted)" # Using same file as unencrypted
+    path: "role/%{trusted.extensions.pp_role}.yaml"
+
+  - name: "Per-OS facts.os.family defaults data (can be encrypted)" # Using same file as unencrypted
+    path: "os/%{facts.os.family}.yaml"
+
+  - name: "Virtual facts.virtual defaults" # Used to configure PE master from within virtual
+    path: "virtual/%{facts.virtual}.yaml"  # like virtualbox or testing platform
+
+  - name: "Common data (can be encrypted)" # Using same file as unencrypted
+    path: "common.yaml"
+

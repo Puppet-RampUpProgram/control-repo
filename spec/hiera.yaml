@@ -1,0 +1,28 @@
+---
+version: 5
+defaults:  # Used for any hierarchy level that omits these keys.
+  datadir: ../data         # This path is relative to hiera.yaml's directory.
+  data_hash: yaml_data  # Use the built-in YAML backend.
+
+hierarchy:
+  - name: "Should be deleted data (this data is for testing purposes only)" # feel free to delete this layer
+    path: "to_be_deleted.yaml"
+
+  - name: "Per-node data"                   # Human-readable name.
+    path: "nodes/%{trusted.certname}.yaml"  # File path, relative to datadir.
+                                   # ^^^ IMPORTANT: include the file extension!
+  - name: "Per-datacenter business role data" # Uses trusted data extentions.
+    path: "datacenter/%{facts.datacenter}/%{trusted.extentions.pp_role}.yaml"
+
+  - name: "Role business data"
+    path: "role/%{trusted.extentions.pp_role}.yaml"
+
+  - name: "Per-OS defaults"
+    path: "os/%{facts.os.family}.yaml"
+
+  - name: "Virtual defaults" # Used to configure PE master from within virtual
+    path: "virtual/%{facts.virtual}.yaml"  # like virtualbox or testing platform 
+
+  - name: "Common data"
+    path: "common.yaml"
+

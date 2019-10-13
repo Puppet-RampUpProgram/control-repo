@@ -1,25 +1,45 @@
 forge "http://forge.puppetlabs.com"
 
-# Modules from the Puppet Forge
-# Further examples: https://github.com/puppetlabs/r10k/blob/master/doc/puppetfile.mkd#forge-1
-mod "puppetlabs/inifile",     '1.6.0'
-mod "puppetlabs/stdlib",      '4.16.0'
-mod "puppetlabs/concat",      '2.2.1'
-mod "puppet/hiera",           '2.4.0'
-mod "npwalker/pe_code_manager_webhook",  '2.0.1'
-mod "npwalker/pe_metric_curl_cron_jobs", '4.0.0'
+mod "puppetlabs/inifile",                '1.6.0'
+mod 'puppetlabs-stdlib',                 '4.24.0'
+mod 'puppetlabs-tomcat',                 '2.4.0'
+mod 'puppetlabs-java',                   '3.2.0'
+mod 'puppetlabs-chocolatey',             '3.1.0'
+mod 'puppetlabs-iis',                    '4.5.0'
+mod 'puppet-archive',                    '3.2.1'
+mod 'puppet-hiera',                      '3.3.4'
+mod 'saz-ssh',                           '4.0.0'
+mod 'saz-resolv_conf',                   '3.3.0'
+mod 'icinga-icinga2',                    '1.3.7'
+mod 'puppetlabs-concat',                 '4.2.1'
+mod 'puppetlabs-motd',                   '3.1.0'
 
-# Modules from Github using various references
-# Further examples: https://github.com/puppetlabs/r10k/blob/master/doc/puppetfile.mkd#examples
-# update the tag to the most current release when implementing
-#mod 'pe_code_manager_webhook',
-#  :git => 'https://github.com/npwalker/pe_code_manager_webhook',
-#  :ref => '9e167154b146901d7cfd3e67dc70e984796da03f'
+mod 'puppetlabs-dsc',                    '1.7.0'
+mod 'puppetlabs-reboot',                 '2.0.0'
+mod 'puppet-windows_env',                '3.2.0'
+mod 'cyberious-pget',                    '1.1.0'
+mod 'cyberious-windows_java',            '1.0.2'
+# These modules are to assist in securing the os's
+mod 'autostructure-secure_windows',      '1.0.5'
+mod 'ayohrling-local_security_policy',   '0.6.1'
+mod 'autostructure-auditpol',            '1.0.0'
+mod 'puppetlabs-acl',                    '2.1.0'
+mod 'puppetlabs-registry',               '2.1.0'
+mod 'puppet-windowsfeature',             '3.2.2'
+mod 'autostructure-applocker',           '1.0.0'
+mod 'puppet-sslcertificate',             '3.4.0'
+mod 'ipcrm-registry_acl',                '0.0.6'
+mod 'puppetlabs-powershell',             '2.3.0'
+mod 'puppet-windows_firewall',           '2.0.2'
+mod 'autostructure-ad_acl',              '1.0.0'
 
-mod 'gms',
-  :git    => 'https://github.com/abrader/abrader-gms',
-  :ref    => 'a5105e95cf0f8b84a143d7a69a83e3ff3d4e02fb'
+mod 'hardening-os_hardening',              '2.2.6'
+mod 'herculesteam-augeasproviders_sysctl', '2.3.1'
+mod 'herculesteam-augeasproviders_core',   '2.5.0'
 
-mod 'pltraining-rbac',
-  :git    => 'https://github.com/puppetlabs/pltraining-rbac',
-  :ref    => '9a823ff42810988f80a2b65738054a816620d972'
+#This is for fastb_database
+mod 'puppetlabs-translate',               '2.0.0'
+mod 'puppetlabs-mysql',                   '10.1.0'
+
+#mod 'tomcat',
+#  git: 'https://github.com/spidersddd/puppetlabs-tomcat'

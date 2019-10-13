@@ -1,0 +1,61 @@
+# Classes to be tested
+# test all roles in repo
+classes:
+  - '/role::/'
+  - profile::os::baseline
+
+# Nodes to tests classes on, this refers to a 'factset' or 'nodeset'
+# depending on weather you are running 'spec' or 'acceptance' tests
+nodes:
+    - CentOS-7.0-64
+    - CentOS-6.6-64
+    - Windows_Server-2012r2-64
+    - solaris-11.2-sparc-64
+
+# You can group classes here to save typing
+class_groups:
+  base:
+    - 'profile::os::baseline'
+  windows:
+    - '/role::spider/'
+    - 'profile::os::baseline'
+  linux:
+    - '/role::sup_svc/'
+    - '/role::fastb/'
+    - profile::os::baseline
+# You can group nodes here to save typing
+# We have created a 'non_windows_nodes' group because we can't
+# give you Windows vagrant boxes to test with because licensing,
+# we can give you fact sets though so go crazy with spec testing!
+node_groups:
+  windows_nodes:
+    - Windows_Server-2012r2-64
+  linux_nodes:
+    - CentOS-7.0-64
+    - CentOS-6.6-64
+  solaris_nodes:
+    - solaris-11.2-sparc-64
+  non_windows_nodes:
+    include: 'linux_nodes'
+    include: 'solaris_nodes'
+    exclude: 'windows_nodes'
+
+test_matrix:
+  - linux_nodes:
+      classes: 'linux'
+      tests: 'spec'
+  - windows_nodes:
+      classes: 'windows'
+      tests: 'spec'
+  - solaris_nodes:
+      classes: 'base'
+      tests: 'spec'
+  - non_windows_nodes: 
+      classes: 
+        - 'linux'
+        - 'solaris'
+      tests: 'acceptance'
+
+opts:
+  :facts_dirs:
+    - spec/factsets
