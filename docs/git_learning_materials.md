@@ -8,7 +8,7 @@ There are lots of ways to learn git, here are some suggestions.  If you want to 
 The first two start out in the web browser then git immersion helps you setup git on your machine and walk through examples on your actual machine.
 
  - https://www.codecademy.com/learn/learn-git
- - https://www.codeschool.com/paths/git
+ - https://www.pluralsight.com/courses/getting-started-git (subscription needed)
  - http://gitimmersion.com/
 
 My favorite web tool for being able to mentally visualize what happens when you run different git commands.
@@ -22,9 +22,13 @@ http://learngitbranching.js.org/
 
  - https://www.git-tower.com/learn/cheat-sheets/git
  - http://rogerdudler.github.io/git-guide/files/git_cheat_sheet.pdf
- - https://training.github.com/kit/downloads/github-git-cheat-sheet.pdf
+ - https://education.github.com/git-cheat-sheet-education.pdf
 
 ## Git Tools and UIs:
+
+### GitHub Desktop
+This is a very good graphical tool for Mac and Windows users and makes git painless for you.
+https://docs.github.com/en/desktop/installing-and-configuring-github-desktop/installing-github-desktop
 
 ### GitUp
 If you have a Mac you can run GitUp which provides a visual representation of your repository as well as quick ways to do some more complicated command line commands.
